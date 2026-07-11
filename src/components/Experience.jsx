@@ -63,9 +63,9 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-3"
+          className="hud-label mb-3"
         >
-          <span className="text-purple-400/70 font-mono mr-2">04</span> Experience
+          04 / Journey so far
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
@@ -87,10 +87,10 @@ export default function Experience() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="relative pl-8"
             >
-              <span className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-purple-400" />
+              <span className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-amber-400" />
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
                 <h3 className="font-display text-xl font-medium">{role.title}</h3>
-                <span className="text-purple-300/80 text-sm">{role.org}</span>
+                <span className="text-amber-300/80 text-sm">{role.org}</span>
               </div>
               <p className="text-sm text-white/40 mb-3">
                 {role.period} | {role.location}
@@ -98,7 +98,7 @@ export default function Experience() {
               <ul className="space-y-2">
                 {role.points.map((point) => (
                   <li key={point} className="text-white/60 text-sm leading-relaxed flex gap-2">
-                    <span className="text-purple-400/60 shrink-0 mt-0.5">-</span>
+                    <span className="text-amber-400/70 shrink-0 mt-0.5">-</span>
                     {point}
                   </li>
                 ))}
@@ -115,7 +115,7 @@ export default function Experience() {
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-16"
         >
           {education.map((edu) => (
-            <div key={edu.degree} className="glass rounded-2xl p-6">
+            <div key={edu.degree} className="glass  p-6">
               <h3 className="font-display font-medium mb-1">{edu.degree}</h3>
               <p className="text-sm text-white/60">{edu.school}</p>
               <p className="text-sm text-white/40 mt-2">{edu.detail}</p>
@@ -128,9 +128,9 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass rounded-2xl p-6 mt-4 border-purple-400/20"
+          className="glass  p-6 mt-4 border-amber-400/30"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-purple-300/70 mb-2">
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80 mb-2">
             Publication
           </p>
           <h3 className="font-display font-medium mb-1">

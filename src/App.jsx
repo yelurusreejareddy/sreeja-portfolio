@@ -30,7 +30,7 @@ function Navbar() {
       transition={{ duration: 0.6 }}
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
     >
-      <a href="#" className="font-display font-medium text-sm tracking-wide">SRY</a>
+      <a href="#" className="font-pixel text-xs tracking-wider" style={{ color: "var(--gold)" }}>SRY</a>
       <div className="hidden md:flex items-center gap-5 text-sm text-white/70">
         <a href="#about" className="hover:text-white transition-colors">About</a>
         <a href="#research" className="hover:text-white transition-colors">Research</a>
@@ -40,7 +40,7 @@ function Navbar() {
       </div>
       <a
         href="/resume.pdf"
-        className="text-sm px-4 py-1.5 rounded-full bg-white text-black font-medium hover:bg-white/85 transition-colors"
+        className="text-sm px-4 py-1.5 rounded-full bg-amber-400 text-black font-medium hover:bg-amber-300 transition-colors"
       >
         Resume
       </a>
@@ -60,9 +60,13 @@ function Hero() {
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
       <div className="absolute inset-0 grid-bg" />
-      <div className="blob blob-1 w-[420px] h-[420px] bg-purple-500 top-[-10%] left-[-5%]" />
-      <div className="blob blob-2 w-[380px] h-[380px] bg-pink-500 bottom-[-10%] right-[-5%]" />
-      <div className="blob blob-3 w-[320px] h-[320px] bg-blue-500 top-[30%] right-[15%]" />
+      <div className="blob blob-1 w-[420px] h-[420px] bg-amber-500 top-[-10%] left-[-5%]" />
+      <div className="blob blob-2 w-[380px] h-[380px] bg-teal-500 bottom-[-10%] right-[-5%]" />
+      <div className="pixel-dot top-[22%] left-[18%]" style={{ animationDelay: '0s' }} />
+      <div className="pixel-dot top-[30%] right-[22%]" style={{ animationDelay: '1.2s' }} />
+      <div className="pixel-dot bottom-[28%] left-[28%]" style={{ animationDelay: '2.1s' }} />
+      <div className="pixel-dot top-[60%] right-[14%]" style={{ animationDelay: '0.7s' }} />
+      <div className="pixel-dot bottom-[18%] right-[36%]" style={{ animationDelay: '3s' }} />
 
       <motion.div style={{ scale, opacity }} className="relative z-10 max-w-3xl text-center">
         <motion.div
@@ -70,38 +74,51 @@ function Hero() {
           initial="hidden"
           animate="show"
           custom={0}
-          className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-8"
+          className="inline-flex items-center gap-2.5 glass px-4 py-2 mb-10"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-sm text-white/70">Open to AI / ML engineering roles</span>
+          <span className="w-2 h-2 bg-emerald-400 animate-pulse" />
+          <span className="font-pixel text-[11px] tracking-wider text-white/80">ONLINE | OPEN TO AI/ML ROLES</span>
         </motion.div>
+
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          custom={0.05}
+          className="hud-label mb-4"
+        >
+          Player 1
+        </motion.p>
 
         <motion.h1
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={0.1}
-          className="font-display text-5xl sm:text-7xl font-medium leading-[1.05] mb-6"
+          className="font-display text-5xl sm:text-7xl font-medium leading-[1.05] mb-8"
         >
-          Hi, I'm <span className="gradient-text">Sreeja</span>
+          Sreeja <span className="gradient-text">Reddy Yeluru</span>
         </motion.h1>
 
-        <motion.p
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={0.15}
-          className="font-display text-2xl sm:text-3xl text-white/85 h-10 mb-8"
+          className="dialog-box max-w-xl mx-auto px-6 py-5 text-left mb-10"
         >
-          <Typewriter
-            phrases={[
-              'I make LLMs answer with receipts.',
-              'I taught an agent Pong from raw pixels.',
-              'I catch jailbreak prompts before they land.',
-              'I turn whiteboard math into working code.',
-            ]}
-          />
-        </motion.p>
+          <p className="hud-label mb-2 text-teal-300" style={{ color: 'var(--teal)' }}>sreeja says:</p>
+          <p className="font-mono text-base sm:text-lg text-white/85 min-h-14">
+            <Typewriter
+              phrases={[
+                'I taught an agent to play Pong from raw pixels.',
+                'I make LLMs cite their sources.',
+                'I catch jailbreak prompts before they land.',
+                'I turn whiteboard math into working code.',
+              ]}
+            />
+          </p>
+        </motion.div>
 
         <motion.p
           variants={fadeUp}
@@ -110,9 +127,8 @@ function Hero() {
           custom={0.2}
           className="text-lg text-white/60 max-w-xl mx-auto mb-10"
         >
-          I build ML systems and do research in computational topology.
-          Looking for my next role right now, and happy to relocate for the
-          right one.
+          Currently doing research in computational topology at DePaul
+          University, and turning what I learn into projects you can try.
         </motion.p>
 
         <motion.div
@@ -124,18 +140,19 @@ function Hero() {
         >
           <Magnetic>
             <a
-              href="#projects"
-              className="inline-block px-6 py-3 rounded-full bg-white text-black font-medium"
+              href="#about"
+              className="inline-block px-7 py-3.5 font-pixel text-xs tracking-wider bg-amber-400 text-black border-2 border-amber-400"
+              style={{ boxShadow: '4px 4px 0 rgba(0,0,0,0.4)' }}
             >
-              See my work
+              PRESS START
             </a>
           </Magnetic>
           <Magnetic>
             <a
               href="#contact"
-              className="inline-block px-6 py-3 rounded-full glass font-medium"
+              className="inline-block px-7 py-3.5 font-pixel text-xs tracking-wider glass text-white/85"
             >
-              Say hi
+              TALK TO ME
             </a>
           </Magnetic>
         </motion.div>
@@ -180,9 +197,9 @@ function FeaturedProject({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.12 }}
-      className="glass rounded-3xl p-8 flex flex-col gap-4 hover:border-purple-400/40 transition-colors group relative overflow-hidden"
+      className="glass  p-8 flex flex-col gap-4 hover:border-amber-400/50 transition-colors group relative overflow-hidden"
     >
-      <div className="blob w-[200px] h-[200px] bg-purple-600 top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" />
+      <div className="blob w-[200px] h-[200px] bg-amber-600 top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" />
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
           <span className="text-3xl">{project.emoji}</span>
@@ -202,7 +219,7 @@ function FeaturedProject({ project, index }) {
             </span>
           ))}
         </div>
-        <p className="flex items-center gap-1.5 text-sm text-purple-300/80 mt-5 group-hover:text-purple-200 transition-colors">
+        <p className="flex items-center gap-1.5 text-sm text-amber-300/80 mt-5 group-hover:text-amber-200 transition-colors">
           Try it <FiExternalLink size={14} />
         </p>
       </div>
@@ -222,9 +239,9 @@ function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-3 text-center"
+          className="hud-label mb-3 text-center"
         >
-          <span className="text-purple-400/70 font-mono mr-2">03</span> Projects
+          03 / Quest log: projects
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}

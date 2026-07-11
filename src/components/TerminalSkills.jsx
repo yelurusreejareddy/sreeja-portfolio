@@ -56,9 +56,9 @@ export default function TerminalSkills() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-6 text-center"
+          className="hud-label mb-6 text-center"
         >
-          <span className="text-purple-400/70 font-mono mr-2">05</span> Stack
+          05 / Skill tree
         </motion.p>
 
         <motion.div

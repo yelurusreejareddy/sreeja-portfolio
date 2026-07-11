@@ -25,7 +25,7 @@ export default function Marquee() {
             <span className="font-display text-sm uppercase tracking-[0.2em] text-white/35">
               {item}
             </span>
-            <span className="text-purple-400/40 text-xs">*</span>
+            <span className="text-amber-400/50 text-xs">*</span>
           </span>
         ))}
       </div>

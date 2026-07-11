@@ -1,15 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..600&family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #0b0d10;
+  --panel: #13161c;
+  --line: #2a2f3a;
+  --gold: #fbbf24;
+  --teal: #2dd4bf;
+  --coral: #fb7185;
+  --ink: #e8e6e1;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
-  background: #06060a;
-  color: #f5f5f7;
+  background: var(--bg);
+  color: var(--ink);
   font-family: 'Inter', system-ui, sans-serif;
   scroll-behavior: smooth;
 }
@@ -18,18 +28,22 @@ html, body, #root {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #06060a;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  background: var(--line);
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: #3d4450;
 }
 
 .font-display {
   font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-pixel {
+  font-family: 'Silkscreen', monospace;
 }
 
 .font-mono {
@@ -37,12 +51,12 @@ html, body, #root {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #a78bfa, #f472b6, #60a5fa);
+  background: linear-gradient(90deg, var(--gold), var(--coral), var(--teal));
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: shine 6s linear infinite;
+  animation: shine 8s linear infinite;
 }
 
 @keyframes shine {
@@ -50,17 +64,51 @@ html, body, #root {
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+}
+
+.hud-label {
+  font-family: 'Silkscreen', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.dialog-box {
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.dialog-box::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--gold);
+  animation: bob 1s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
 }
 
 .blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.45;
+  filter: blur(100px);
+  opacity: 0.25;
   pointer-events: none;
 }
 
@@ -100,21 +148,54 @@ html, body, #root {
   border-radius: 9999px;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.05) 0%, transparent 65%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s;
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(rgba(232, 230, 225, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 230, 225, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
 }
 
+.pixel-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  opacity: 0;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.7; }
+}
+
+.xp-bar {
+  height: 14px;
+  background: #1a1e26;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px,
+    var(--gold) 8px,
+    #f59e0b 8px,
+    #f59e0b 16px
+  );
+}
+
 ::selection {
-  background: #a78bfa;
-  color: #06060a;
+  background: var(--gold);
+  color: var(--bg);
 }

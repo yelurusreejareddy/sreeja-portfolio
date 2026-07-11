@@ -32,8 +32,8 @@ const links = [
 export default function Contact() {
   return (
     <section id="contact" className="relative py-28 px-6 overflow-hidden">
-      <div className="blob blob-1 w-[400px] h-[400px] bg-purple-600 bottom-[-20%] left-[10%] opacity-30" />
-      <div className="blob blob-3 w-[350px] h-[350px] bg-pink-600 bottom-[-10%] right-[10%] opacity-25" />
+      <div className="blob blob-1 w-[400px] h-[400px] bg-amber-600 bottom-[-20%] left-[10%] opacity-30" />
+      <div className="blob blob-3 w-[350px] h-[350px] bg-teal-600 bottom-[-10%] right-[10%] opacity-25" />
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
         <motion.p
@@ -41,9 +41,9 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-4"
+          className="hud-label mb-4"
         >
-          <span className="text-purple-400/70 font-mono mr-2">06</span> Contact
+          06 / Contact
         </motion.p>
 
         <motion.h2
@@ -82,9 +82,9 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith('mailto') ? undefined : '_blank'}
               rel="noreferrer"
-              className="glass rounded-2xl p-5 flex items-center gap-4 hover:border-white/25 hover:scale-[1.02] transition-all group text-left"
+              className="glass  p-5 flex items-center gap-4 hover:border-white/25 hover:scale-[1.02] transition-all group text-left"
             >
-              <link.icon size={22} className="text-purple-300/80 shrink-0" />
+              <link.icon size={22} className="text-amber-300/80 shrink-0" />
               <div className="min-w-0">
                 <p className="font-medium text-sm">{link.label}</p>
                 <p className="text-white/45 text-xs truncate">{link.handle}</p>

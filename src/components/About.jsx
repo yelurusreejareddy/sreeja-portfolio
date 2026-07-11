@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
+import { FiAward, FiBookOpen, FiStar, FiZap } from 'react-icons/fi'
 
-const stats = [
-  { value: '4+', label: 'Years of work experience' },
-  { value: '4.0', label: 'GPA, M.S. in AI' },
-  { value: '10', label: 'Projects deployed as demos' },
-  { value: '1', label: 'Published paper' },
+const achievements = [
+  { icon: FiZap, title: '4+ years of work experience', detail: 'Accenture, DePaul, and internships' },
+  { icon: FiStar, title: '4.0 GPA, M.S. in AI', detail: 'Presidential Scholarship, DePaul University' },
+  { icon: FiBookOpen, title: 'Published paper', detail: 'IJRASET, 2021' },
+  { icon: FiAward, title: '10 projects deployed as demos', detail: 'All live on Hugging Face' },
 ]
 
 export default function About() {
@@ -16,9 +17,9 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-3"
+          className="hud-label mb-3"
         >
-          <span className="text-purple-400/70 font-mono mr-2">01</span> About
+          01 / Character sheet
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
@@ -60,22 +61,34 @@ export default function About() {
             </div>
           </motion.div>
 
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="glass rounded-2xl p-5"
-              >
-                <p className="font-display text-3xl font-medium gradient-text mb-1">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-white/50">{stat.label}</p>
-              </motion.div>
-            ))}
+          <div className="lg:col-span-2">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="hud-label mb-4"
+            >
+              Achievements unlocked
+            </motion.p>
+            <div className="space-y-3">
+              {achievements.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: 24 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="glass p-4 flex items-start gap-3"
+                >
+                  <item.icon size={18} className="shrink-0 mt-0.5" style={{ color: 'var(--gold)' }} />
+                  <div>
+                    <p className="font-medium text-sm text-white/90">{item.title}</p>
+                    <p className="text-xs text-white/45 mt-0.5">{item.detail}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

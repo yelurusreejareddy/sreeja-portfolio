@@ -31,7 +31,7 @@ export default function ProjectCard({ project, index }) {
       transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
       animate={{ rotateX: rotate.x, rotateY: rotate.y }}
       style={{ transformStyle: 'preserve-3d' }}
-      className="glass rounded-2xl p-6 flex flex-col gap-3 hover:border-white/20 transition-colors cursor-pointer group"
+      className="glass  p-6 flex flex-col gap-3 hover:border-white/20 transition-colors cursor-pointer group"
     >
       <div className="flex items-start justify-between gap-3">
         <span className="text-2xl">{project.emoji}</span>

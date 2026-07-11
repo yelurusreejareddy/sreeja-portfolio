@@ -12,9 +12,9 @@ export default function Research() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-3"
+          className="hud-label mb-3"
         >
-          <span className="text-purple-400/70 font-mono mr-2">02</span> Research
+          02 / Main quest: research
         </motion.p>
 
         <motion.div
@@ -22,9 +22,9 @@ export default function Research() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="glass rounded-3xl p-8 sm:p-12 relative overflow-hidden"
+          className="glass  p-8 sm:p-12 relative overflow-hidden"
         >
-          <div className="blob blob-2 w-[300px] h-[300px] bg-purple-600 top-[-30%] right-[-10%] opacity-25" />
+          <div className="blob blob-2 w-[300px] h-[300px] bg-amber-600 top-[-30%] right-[-10%] opacity-25" />
 
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
