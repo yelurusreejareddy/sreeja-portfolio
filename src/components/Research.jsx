@@ -1,0 +1,78 @@
+import { motion } from 'framer-motion'
+import { FiLock } from 'react-icons/fi'
+
+const topics = ['Topological Data Analysis', 'Persistent Homology', 'GUDHI', 'Linear Algebra', 'Python']
+
+export default function Research() {
+  return (
+    <section id="research" className="relative py-28 px-6">
+      <div className="max-w-5xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-sm uppercase tracking-[0.3em] text-white/40 mb-3"
+        >
+          <span className="text-purple-400/70 font-mono mr-2">02</span> Research
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="glass rounded-3xl p-8 sm:p-12 relative overflow-hidden"
+        >
+          <div className="blob blob-2 w-[300px] h-[300px] bg-purple-600 top-[-30%] right-[-10%] opacity-25" />
+
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <h2 className="font-display text-2xl sm:text-3xl font-medium">
+                Harmonic persistence barcodes for machine learning
+              </h2>
+            </div>
+            <p className="text-white/50 text-sm mb-6">
+              Graduate Research Assistant, DePaul University | Sep 2025 to present
+            </p>
+
+            <div className="space-y-4 text-white/60 leading-relaxed max-w-3xl">
+              <p>
+                My research sits at the intersection of topology and machine
+                learning. Topological data analysis studies the shape of data:
+                loops, voids, and connected components that survive across
+                scales. I work on harmonic persistence barcodes, a way of
+                enriching these topological signatures with geometric
+                information carried by harmonic chains.
+              </p>
+              <p>
+                Concretely, I implement matrix-based algorithms in Python that
+                turn mathematical specifications into clean, tested code,
+                and I run experiments comparing these enriched barcodes
+                against traditional persistence features on shape
+                classification tasks. Early results are promising, and a
+                publication is in preparation.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mt-8">
+              {topics.map((topic) => (
+                <span
+                  key={topic}
+                  className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/50 border border-white/8"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+
+            <p className="flex items-center gap-2 mt-8 text-sm text-white/35">
+              <FiLock size={14} />
+              Code private while the work is under way. Happy to talk about it in detail.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
