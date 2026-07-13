@@ -1,4 +1,5 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import { PAGE_VISIBLE } from './lib/motionSafe'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink } from 'react-icons/fi'
 import CursorGlow from './components/CursorGlow'
@@ -25,7 +26,7 @@ const fadeUp = {
 function Navbar() {
   return (
     <motion.nav
-      initial={{ opacity: 0, y: -16 }}
+      initial={PAGE_VISIBLE ? { opacity: 0, y: -16 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
@@ -50,50 +51,55 @@ function Navbar() {
 
 function Hero() {
   const heroRef = useRef(null)
+  const [photoOk, setPhotoOk] = useState(true)
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.88])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-28 pb-16">
       <div className="absolute inset-0 grid-bg" />
-      <div className="blob blob-1 w-[420px] h-[420px] bg-amber-500 top-[-10%] left-[-5%]" />
-      <div className="blob blob-2 w-[380px] h-[380px] bg-teal-500 bottom-[-10%] right-[-5%]" />
+      <div className="blob blob-1 w-[420px] h-[420px] bg-amber-500 top-[-10%] left-[-5%] opacity-15" />
+      <div className="blob blob-2 w-[380px] h-[380px] bg-teal-500 bottom-[-10%] right-[-5%] opacity-15" />
 
-      <motion.div style={{ scale, opacity }} className="relative z-10 max-w-3xl text-center">
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0}
-          className="inline-flex items-center gap-2.5 glass px-4 py-2 mb-10"
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-xs tracking-wide text-white/75">Open to AI/ML engineering roles</span>
-        </motion.div>
+      <motion.div
+        style={{ scale, opacity }}
+        className="relative z-10 max-w-5xl w-full grid grid-cols-1 lg:grid-cols-5 gap-14 items-center"
+      >
+        <div className="lg:col-span-3 text-center lg:text-left">
+          <motion.div
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0}
+            className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-8"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-sm text-white/70">Open to AI/ML engineering roles</span>
+          </motion.div>
 
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.1}
-          className="font-display text-5xl sm:text-7xl font-medium leading-[1.05] mb-8"
-        >
-          Sreeja <span className="gradient-text">Reddy Yeluru</span>
-        </motion.h1>
+          <motion.h1
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.1}
+            className="font-display text-5xl sm:text-6xl xl:text-7xl font-medium leading-[1.05] mb-6"
+          >
+            Sreeja
+            <br />
+            Reddy <span className="gradient-text">Yeluru</span>
+          </motion.h1>
 
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.15}
-          className="dialog-box max-w-xl mx-auto px-6 py-5 text-left mb-10"
-        >
-          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--teal)' }}>$ whoami</p>
-          <p className="font-mono text-base sm:text-lg text-white/85 min-h-14">
+          <motion.p
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.15}
+            className="font-display text-xl sm:text-2xl text-white/85 min-h-16 mb-6"
+          >
             <Typewriter
               phrases={[
                 'I taught an agent to play Pong from raw pixels.',
@@ -102,61 +108,84 @@ function Hero() {
                 'I turn whiteboard math into working code.',
               ]}
             />
-          </p>
-        </motion.div>
+          </motion.p>
 
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.2}
-          className="text-lg text-white/60 max-w-xl mx-auto mb-10"
-        >
-          Currently doing research in computational topology at DePaul
-          University, and turning what I learn into projects you can try.
-        </motion.p>
+          <motion.p
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.2}
+            className="text-lg text-white/60 max-w-xl mx-auto lg:mx-0 mb-10"
+          >
+            Currently doing research in computational topology at DePaul
+            University, and turning what I learn into projects you can try.
+          </motion.p>
+
+          <motion.div
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.3}
+            className="flex items-center justify-center lg:justify-start gap-4 mb-12"
+          >
+            <Magnetic>
+              <a
+                href="#projects"
+                className="inline-block px-7 py-3 rounded-full bg-white text-black font-medium hover:bg-white/85 transition-colors"
+              >
+                View my work
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="#contact"
+                className="inline-block px-7 py-3 rounded-full glass font-medium text-white/85 hover:border-white/30 transition-colors"
+              >
+                Get in touch
+              </a>
+            </Magnetic>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.4}
+            className="flex items-center justify-center lg:justify-start gap-5 text-white/50"
+          >
+            <a href="https://github.com/yelurusreejareddy" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="GitHub">
+              <FiGithub size={20} />
+            </a>
+            <a href="https://www.linkedin.com/in/sreeja-reddy-yeluru" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
+              <FiLinkedin size={20} />
+            </a>
+            <a href="mailto:yeluru.sreeja@gmail.com" className="hover:text-white transition-colors" aria-label="Email">
+              <FiMail size={20} />
+            </a>
+          </motion.div>
+        </div>
 
         <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.3}
-          className="flex items-center justify-center gap-4 mb-14"
+          initial={PAGE_VISIBLE ? { opacity: 0, scale: 0.95 } : false}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="lg:col-span-2 hidden lg:flex justify-center"
         >
-          <Magnetic>
-            <a
-              href="#projects"
-              className="inline-block px-7 py-3 rounded-full bg-amber-400 text-black font-medium hover:bg-amber-300 transition-colors"
-            >
-              View my work
-            </a>
-          </Magnetic>
-          <Magnetic>
-            <a
-              href="#contact"
-              className="inline-block px-7 py-3 rounded-full glass font-medium text-white/85 hover:border-white/30 transition-colors"
-            >
-              Get in touch
-            </a>
-          </Magnetic>
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.4}
-          className="flex items-center justify-center gap-5 text-white/50"
-        >
-          <a href="https://github.com/yelurusreejareddy" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="GitHub">
-            <FiGithub size={20} />
-          </a>
-          <a href="https://www.linkedin.com/in/sreeja-reddy-yeluru" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
-            <FiLinkedin size={20} />
-          </a>
-          <a href="mailto:yeluru.sreeja@gmail.com" className="hover:text-white transition-colors" aria-label="Email">
-            <FiMail size={20} />
-          </a>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-amber-400/20 via-transparent to-teal-400/20 blur-xl" />
+            {photoOk ? (
+              <img
+                src="/sreeja.jpg"
+                alt="Sreeja Reddy Yeluru"
+                onError={() => setPhotoOk(false)}
+                className="relative w-80 max-w-full rounded-3xl border border-white/10 object-cover aspect-[4/5]"
+              />
+            ) : (
+              <div className="relative w-80 max-w-full rounded-3xl border border-white/10 aspect-[4/5] glass flex items-center justify-center">
+                <span className="font-display text-6xl font-medium gradient-text">SRY</span>
+              </div>
+            )}
+          </div>
         </motion.div>
       </motion.div>
 
@@ -177,7 +206,7 @@ function FeaturedProject({ project, index }) {
       href={project.url}
       target="_blank"
       rel="noreferrer"
-      initial={{ opacity: 0, y: 40 }}
+      initial={PAGE_VISIBLE ? { opacity: 0, y: 40 } : false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.12 }}
@@ -219,7 +248,7 @@ function Projects() {
     <section id="projects" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -228,7 +257,7 @@ function Projects() {
           03 / Projects
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.05 }}
@@ -237,7 +266,7 @@ function Projects() {
           Projects you can <span className="gradient-text">actually try</span>
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0 }}
+          initial={PAGE_VISIBLE ? { opacity: 0 } : false}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}

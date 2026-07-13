@@ -1,3 +1,4 @@
+import { PAGE_VISIBLE } from '../lib/motionSafe'
 import { motion } from 'framer-motion'
 
 const roles = [
@@ -59,7 +60,7 @@ export default function Experience() {
     <section id="experience" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -68,7 +69,7 @@ export default function Experience() {
           04 / Experience
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.05 }}
@@ -81,7 +82,7 @@ export default function Experience() {
           {roles.map((role, i) => (
             <motion.div
               key={role.title + role.org}
-              initial={{ opacity: 0, x: -16 }}
+              initial={PAGE_VISIBLE ? { opacity: 0, x: -16 } : false}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
@@ -108,7 +109,7 @@ export default function Experience() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -124,7 +125,7 @@ export default function Experience() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}

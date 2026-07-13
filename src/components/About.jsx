@@ -1,3 +1,4 @@
+import { PAGE_VISIBLE } from '../lib/motionSafe'
 import { motion } from 'framer-motion'
 import { FiAward, FiBookOpen, FiStar, FiZap } from 'react-icons/fi'
 
@@ -13,7 +14,7 @@ export default function About() {
     <section id="about" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -24,7 +25,7 @@ export default function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
@@ -63,7 +64,7 @@ export default function About() {
 
           <div className="lg:col-span-2">
             <motion.p
-              initial={{ opacity: 0 }}
+              initial={PAGE_VISIBLE ? { opacity: 0 } : false}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
@@ -75,7 +76,7 @@ export default function About() {
               {achievements.map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, x: 24 }}
+                  initial={PAGE_VISIBLE ? { opacity: 0, x: 24 } : false}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}

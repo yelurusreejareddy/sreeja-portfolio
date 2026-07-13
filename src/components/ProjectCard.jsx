@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { PAGE_VISIBLE } from '../lib/motionSafe'
 import { motion } from 'framer-motion'
 import { FiExternalLink } from 'react-icons/fi'
 
@@ -25,7 +26,7 @@ export default function ProjectCard({ project, index }) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 40 }}
+      initial={PAGE_VISIBLE ? { opacity: 0, y: 40 } : false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}

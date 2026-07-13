@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { PAGE_VISIBLE } from '../lib/motionSafe'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
@@ -53,7 +54,7 @@ export default function TerminalSkills() {
     <section className="relative py-24 px-6">
       <div className="max-w-2xl mx-auto" ref={ref}>
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="hud-label mb-6 text-center"
@@ -62,7 +63,7 @@ export default function TerminalSkills() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 20 } : false}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="glass rounded-2xl overflow-hidden"

@@ -1,3 +1,4 @@
+import { PAGE_VISIBLE } from '../lib/motionSafe'
 import { motion } from 'framer-motion'
 import { FiLock } from 'react-icons/fi'
 
@@ -8,7 +9,7 @@ export default function Research() {
     <section id="research" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -18,7 +19,7 @@ export default function Research() {
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
