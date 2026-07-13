@@ -14,7 +14,7 @@ export default function Research() {
           transition={{ duration: 0.6 }}
           className="hud-label mb-3"
         >
-          02 / Main quest: research
+          02 / Research
         </motion.p>
 
         <motion.div

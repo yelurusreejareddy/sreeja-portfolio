@@ -30,7 +30,7 @@ function Navbar() {
       transition={{ duration: 0.6 }}
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
     >
-      <a href="#" className="font-pixel text-xs tracking-wider" style={{ color: "var(--gold)" }}>SRY</a>
+      <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--gold)" }}>SRY</a>
       <div className="hidden md:flex items-center gap-5 text-sm text-white/70">
         <a href="#about" className="hover:text-white transition-colors">About</a>
         <a href="#research" className="hover:text-white transition-colors">Research</a>
@@ -58,15 +58,10 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+    <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-28 pb-16">
       <div className="absolute inset-0 grid-bg" />
       <div className="blob blob-1 w-[420px] h-[420px] bg-amber-500 top-[-10%] left-[-5%]" />
       <div className="blob blob-2 w-[380px] h-[380px] bg-teal-500 bottom-[-10%] right-[-5%]" />
-      <div className="pixel-dot top-[22%] left-[18%]" style={{ animationDelay: '0s' }} />
-      <div className="pixel-dot top-[30%] right-[22%]" style={{ animationDelay: '1.2s' }} />
-      <div className="pixel-dot bottom-[28%] left-[28%]" style={{ animationDelay: '2.1s' }} />
-      <div className="pixel-dot top-[60%] right-[14%]" style={{ animationDelay: '0.7s' }} />
-      <div className="pixel-dot bottom-[18%] right-[36%]" style={{ animationDelay: '3s' }} />
 
       <motion.div style={{ scale, opacity }} className="relative z-10 max-w-3xl text-center">
         <motion.div
@@ -76,19 +71,9 @@ function Hero() {
           custom={0}
           className="inline-flex items-center gap-2.5 glass px-4 py-2 mb-10"
         >
-          <span className="w-2 h-2 bg-emerald-400 animate-pulse" />
-          <span className="font-pixel text-[11px] tracking-wider text-white/80">ONLINE | OPEN TO AI/ML ROLES</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-mono text-xs tracking-wide text-white/75">Open to AI/ML engineering roles</span>
         </motion.div>
-
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={0.05}
-          className="hud-label mb-4"
-        >
-          Player 1
-        </motion.p>
 
         <motion.h1
           variants={fadeUp}
@@ -107,7 +92,7 @@ function Hero() {
           custom={0.15}
           className="dialog-box max-w-xl mx-auto px-6 py-5 text-left mb-10"
         >
-          <p className="hud-label mb-2 text-teal-300" style={{ color: 'var(--teal)' }}>sreeja says:</p>
+          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--teal)' }}>$ whoami</p>
           <p className="font-mono text-base sm:text-lg text-white/85 min-h-14">
             <Typewriter
               phrases={[
@@ -140,19 +125,18 @@ function Hero() {
         >
           <Magnetic>
             <a
-              href="#about"
-              className="inline-block px-7 py-3.5 font-pixel text-xs tracking-wider bg-amber-400 text-black border-2 border-amber-400"
-              style={{ boxShadow: '4px 4px 0 rgba(0,0,0,0.4)' }}
+              href="#projects"
+              className="inline-block px-7 py-3 rounded-full bg-amber-400 text-black font-medium hover:bg-amber-300 transition-colors"
             >
-              PRESS START
+              View my work
             </a>
           </Magnetic>
           <Magnetic>
             <a
               href="#contact"
-              className="inline-block px-7 py-3.5 font-pixel text-xs tracking-wider glass text-white/85"
+              className="inline-block px-7 py-3 rounded-full glass font-medium text-white/85 hover:border-white/30 transition-colors"
             >
-              TALK TO ME
+              Get in touch
             </a>
           </Magnetic>
         </motion.div>
@@ -241,7 +225,7 @@ function Projects() {
           transition={{ duration: 0.6 }}
           className="hud-label mb-3 text-center"
         >
-          03 / Quest log: projects
+          03 / Projects
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}

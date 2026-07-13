@@ -58,7 +58,7 @@ export default function TerminalSkills() {
           transition={{ duration: 0.6 }}
           className="hud-label mb-6 text-center"
         >
-          05 / Skill tree
+          05 / Stack
         </motion.p>
 
         <motion.div

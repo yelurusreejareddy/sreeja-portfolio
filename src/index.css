@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..600&family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 * {
@@ -43,7 +43,7 @@ html, body, #root {
 }
 
 .font-pixel {
-  font-family: 'Silkscreen', monospace;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 .font-mono {
@@ -65,43 +65,23 @@ html, body, #root {
 
 .glass {
   background: var(--panel);
-  border: 2px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  border-radius: 12px;
 }
 
 .hud-label {
-  font-family: 'Silkscreen', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   color: var(--gold);
   text-transform: uppercase;
 }
 
 .dialog-box {
   background: var(--panel);
-  border: 2px solid var(--line);
-  border-radius: 8px;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--line);
+  border-radius: 12px;
   position: relative;
-}
-
-.dialog-box::after {
-  content: '';
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 8px solid var(--gold);
-  animation: bob 1s ease-in-out infinite;
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(3px); }
 }
 
 .blob {

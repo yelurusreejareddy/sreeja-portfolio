@@ -65,7 +65,7 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="hud-label mb-3"
         >
-          04 / Journey so far
+          04 / Experience
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}

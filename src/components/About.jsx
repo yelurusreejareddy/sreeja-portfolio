@@ -19,7 +19,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="hud-label mb-3"
         >
-          01 / Character sheet
+          01 / About
         </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
@@ -69,7 +69,7 @@ export default function About() {
               transition={{ duration: 0.5 }}
               className="hud-label mb-4"
             >
-              Achievements unlocked
+              Highlights
             </motion.p>
             <div className="space-y-3">
               {achievements.map((item, i) => (
