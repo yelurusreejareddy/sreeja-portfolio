@@ -6,7 +6,7 @@ const achievements = [
   { icon: FiZap, title: '4+ years of work experience', detail: 'Accenture, DePaul, and internships', color: 'var(--terracotta)' },
   { icon: FiStar, title: '4.0 GPA, M.S. in AI', detail: 'Presidential Scholarship, DePaul University', color: 'var(--sea)' },
   { icon: FiBookOpen, title: 'Published paper', detail: 'IJRASET, 2021', color: 'var(--emerald)' },
-  { icon: FiAward, title: '10 projects deployed as demos', detail: 'All live on Hugging Face', color: 'var(--violet)' },
+  { icon: FiAward, title: '10 projects deployed as demos', detail: 'Live on Hugging Face', color: 'var(--violet)' },
 ]
 
 export default function About() {

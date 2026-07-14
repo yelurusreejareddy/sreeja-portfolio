@@ -69,7 +69,7 @@ function Hero() {
 
       <motion.div
         style={{ scale, opacity }}
-        className="relative z-10 max-w-5xl w-full grid grid-cols-1 lg:grid-cols-5 gap-14 items-center"
+        className="relative z-10 max-w-5xl w-full grid grid-cols-1 lg:grid-cols-5 gap-14 items-start"
       >
         <div className="lg:col-span-3 text-center lg:text-left">
           <motion.div
@@ -171,7 +171,7 @@ function Hero() {
           initial={PAGE_VISIBLE ? { opacity: 0, scale: 0.95 } : false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-2 hidden lg:flex justify-center"
+          className="lg:col-span-2 hidden lg:flex justify-center mt-2"
         >
           <div className="relative">
             <div className="absolute -inset-4 arch blur-xl opacity-30" style={{ background: 'linear-gradient(160deg, var(--terracotta), transparent, var(--sea))' }} />
