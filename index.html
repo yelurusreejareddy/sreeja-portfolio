@@ -4,7 +4,31 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sreeja-portfolio</title>
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)" />
+
+    <title>Sreeja Reddy Yeluru | AI/ML Engineer</title>
+    <meta name="description" content="AI/ML engineer with a research background in computational topology. RAG pipelines, reinforcement learning agents, and applied ML projects, deployed as ten live demos you can try." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sreeja Reddy Yeluru | AI/ML Engineer" />
+    <meta property="og:description" content="AI/ML engineer with a research background in computational topology. RAG pipelines, reinforcement learning agents, and applied ML projects, deployed as ten live demos you can try." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sreeja Reddy Yeluru | AI/ML Engineer" />
+    <meta name="twitter:description" content="AI/ML engineer with a research background in computational topology. RAG pipelines, reinforcement learning agents, and applied ML projects, deployed as ten live demos you can try." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

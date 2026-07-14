@@ -23,7 +23,7 @@ export default function Research() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="glass  p-8 sm:p-12 relative overflow-hidden"
+          className="glass p-8 sm:p-12 relative overflow-hidden"
         >
           <div className="blob blob-2 w-[300px] h-[300px] bg-amber-600 top-[-30%] right-[-10%] opacity-25" />
 
@@ -33,11 +33,11 @@ export default function Research() {
                 Harmonic persistence barcodes for machine learning
               </h2>
             </div>
-            <p className="text-neutral-500 text-sm mb-6">
+            <p className="text-neutral-500 text-sm mb-6 dark:text-neutral-400">
               Graduate Research Assistant, DePaul University | Sep 2025 to present
             </p>
 
-            <div className="space-y-4 text-neutral-600 leading-relaxed max-w-3xl">
+            <div className="space-y-4 text-neutral-600 leading-relaxed max-w-3xl dark:text-neutral-300">
               <p>
                 My research sits at the intersection of topology and machine
                 learning. Topological data analysis studies the shape of data:
@@ -60,14 +60,14 @@ export default function Research() {
               {topics.map((topic) => (
                 <span
                   key={topic}
-                  className="text-xs px-3 py-1.5 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8"
+                  className="text-xs px-3 py-1.5 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8 dark:bg-white/[0.04] dark:text-neutral-400 dark:border-white/10"
                 >
                   {topic}
                 </span>
               ))}
             </div>
 
-            <p className="flex items-center gap-2 mt-8 text-sm text-neutral-400">
+            <p className="flex items-center gap-2 mt-8 text-sm text-neutral-400 dark:text-neutral-500">
               <FiLock size={14} />
               Code private while the work is under way. Happy to talk about it in detail.
             </p>

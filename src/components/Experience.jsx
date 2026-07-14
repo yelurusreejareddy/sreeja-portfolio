@@ -78,7 +78,7 @@ export default function Experience() {
           Where I've worked
         </motion.h2>
 
-        <div className="relative border-l border-black/8 ml-2 space-y-12">
+        <div className="relative border-l border-black/8 ml-2 space-y-12 dark:border-white/10">
           {roles.map((role, i) => (
             <motion.div
               key={role.title + role.org}
@@ -91,15 +91,15 @@ export default function Experience() {
               <span className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-amber-400" />
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
                 <h3 className="font-display text-xl font-medium">{role.title}</h3>
-                <span className="text-amber-700 text-sm">{role.org}</span>
+                <span className="text-amber-700 text-sm dark:text-amber-300">{role.org}</span>
               </div>
-              <p className="text-sm text-neutral-400 mb-3">
+              <p className="text-sm text-neutral-400 mb-3 dark:text-neutral-500">
                 {role.period} | {role.location}
               </p>
               <ul className="space-y-2">
                 {role.points.map((point) => (
-                  <li key={point} className="text-neutral-600 text-sm leading-relaxed flex gap-2">
-                    <span className="text-amber-600 shrink-0 mt-0.5">-</span>
+                  <li key={point} className="text-neutral-600 text-sm leading-relaxed flex gap-2 dark:text-neutral-300">
+                    <span className="text-amber-600 shrink-0 mt-0.5 dark:text-amber-400">-</span>
                     {point}
                   </li>
                 ))}
@@ -116,10 +116,10 @@ export default function Experience() {
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-16"
         >
           {education.map((edu) => (
-            <div key={edu.degree} className="glass  p-6">
+            <div key={edu.degree} className="glass p-6">
               <h3 className="font-display font-medium mb-1">{edu.degree}</h3>
-              <p className="text-sm text-neutral-600">{edu.school}</p>
-              <p className="text-sm text-neutral-400 mt-2">{edu.detail}</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">{edu.school}</p>
+              <p className="text-sm text-neutral-400 mt-2 dark:text-neutral-500">{edu.detail}</p>
             </div>
           ))}
         </motion.div>
@@ -129,19 +129,19 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass  p-6 mt-4 border-amber-400/30"
+          className="glass p-6 mt-4 border-amber-400/30"
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-amber-700 mb-2">
+          <p className="text-xs uppercase tracking-[0.2em] text-amber-700 mb-2 dark:text-amber-300">
             Publication
           </p>
           <h3 className="font-display font-medium mb-1">
             House Price Prediction Using Machine Learning
           </h3>
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
             International Journal for Research in Applied Science and
             Engineering Technology (IJRASET), Aug 2021
           </p>
-          <p className="text-sm text-neutral-400 mt-2">
+          <p className="text-sm text-neutral-400 mt-2 dark:text-neutral-500">
             My first published work, from before graduate school. Random
             Forest and linear regression applied to housing data.
           </p>

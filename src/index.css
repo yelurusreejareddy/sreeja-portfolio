@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 * {
   box-sizing: border-box;
@@ -13,6 +14,24 @@
   --teal: #0f766e;
   --coral: #e11d48;
   --ink: #1c1b18;
+  --shadow-c: rgba(28, 27, 24, 0.04);
+  --shadow-c2: rgba(28, 27, 24, 0.08);
+  --grid-line: rgba(28, 27, 24, 0.035);
+  --glow-color: rgba(180, 83, 9, 0.05);
+}
+
+[data-theme='dark'] {
+  --bg: #0b0d10;
+  --panel: #15181d;
+  --line: #2a2f3a;
+  --gold: #fbbf24;
+  --teal: #2dd4bf;
+  --coral: #fb7185;
+  --ink: #f2f0ec;
+  --shadow-c: rgba(0, 0, 0, 0.25);
+  --shadow-c2: rgba(0, 0, 0, 0.4);
+  --grid-line: rgba(242, 240, 236, 0.04);
+  --glow-color: rgba(251, 191, 36, 0.06);
 }
 
 html, body, #root {
@@ -47,7 +66,7 @@ html, body, #root {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #d97706, #e11d48, #0d9488);
+  background: linear-gradient(90deg, var(--gold), var(--coral), var(--teal));
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -63,14 +82,14 @@ html, body, #root {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
-  box-shadow: 0 1px 2px rgba(28, 27, 24, 0.04), 0 8px 24px -12px rgba(28, 27, 24, 0.08);
+  box-shadow: 0 1px 2px var(--shadow-c), 0 8px 24px -12px var(--shadow-c2);
 }
 
 .terminal {
   background: #16181d;
   border: 1px solid #2a2f3a;
   border-radius: 12px;
-  box-shadow: 0 12px 32px -16px rgba(28, 27, 24, 0.25);
+  box-shadow: 0 12px 32px -16px var(--shadow-c2);
 }
 
 .hud-label {
@@ -132,15 +151,15 @@ html, body, #root {
   border-radius: 9999px;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(217, 119, 6, 0.05) 0%, transparent 65%);
+  background: radial-gradient(circle, var(--glow-color) 0%, transparent 65%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s;
 }
 
 .grid-bg {
   background-image:
-    linear-gradient(rgba(28, 27, 24, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(28, 27, 24, 0.035) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 100%);

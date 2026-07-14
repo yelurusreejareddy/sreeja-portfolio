@@ -31,20 +31,19 @@ export default function ProjectCard({ project, index }) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
       animate={{ rotateX: rotate.x, rotateY: rotate.y }}
-      style={{ transformStyle: 'preserve-3d' }}
-      className="glass  p-6 flex flex-col gap-3 hover:border-black/12 transition-colors cursor-pointer group"
+      className="glass p-6 flex flex-col gap-3 hover:border-black/12 transition-colors cursor-pointer group dark:hover:border-white/15"
     >
       <div className="flex items-start justify-between gap-3">
         <span className="text-2xl">{project.emoji}</span>
-        <FiExternalLink className="text-neutral-400 group-hover:text-neutral-600 transition-colors shrink-0 mt-1" size={16} />
+        <FiExternalLink className="text-neutral-400 group-hover:text-neutral-600 transition-colors shrink-0 mt-1 dark:text-neutral-500 dark:group-hover:text-neutral-300" size={16} />
       </div>
-      <h3 className="font-display text-lg font-medium text-neutral-900">{project.title}</h3>
-      <p className="text-sm text-neutral-600 leading-relaxed">{project.description}</p>
+      <h3 className="font-display text-lg font-medium text-neutral-900 dark:text-neutral-50">{project.title}</h3>
+      <p className="text-sm text-neutral-600 leading-relaxed dark:text-neutral-300">{project.description}</p>
       <div className="flex flex-wrap gap-2 mt-auto pt-2">
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs px-2.5 py-1 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8"
+            className="text-xs px-2.5 py-1 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8 dark:bg-white/[0.04] dark:text-neutral-400 dark:border-white/10"
           >
             {tag}
           </span>

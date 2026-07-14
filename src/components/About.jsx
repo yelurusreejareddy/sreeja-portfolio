@@ -35,7 +35,7 @@ export default function About() {
               From enterprise software to
               <span className="gradient-text"> AI research</span>
             </h2>
-            <div className="space-y-4 text-neutral-600 leading-relaxed">
+            <div className="space-y-4 text-neutral-600 leading-relaxed dark:text-neutral-300">
               <p>
                 I started my career at Accenture, where I spent close to three
                 years building and optimizing systems that real businesses
@@ -84,8 +84,8 @@ export default function About() {
                 >
                   <item.icon size={18} className="shrink-0 mt-0.5" style={{ color: 'var(--gold)' }} />
                   <div>
-                    <p className="font-medium text-sm text-neutral-900">{item.title}</p>
-                    <p className="text-xs text-neutral-500 mt-0.5">{item.detail}</p>
+                    <p className="font-medium text-sm text-neutral-900 dark:text-neutral-50">{item.title}</p>
+                    <p className="text-xs text-neutral-500 mt-0.5 dark:text-neutral-400">{item.detail}</p>
                   </div>
                 </motion.div>
               ))}
