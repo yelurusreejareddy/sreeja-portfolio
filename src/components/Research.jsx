@@ -33,11 +33,11 @@ export default function Research() {
                 Harmonic persistence barcodes for machine learning
               </h2>
             </div>
-            <p className="text-white/50 text-sm mb-6">
+            <p className="text-neutral-500 text-sm mb-6">
               Graduate Research Assistant, DePaul University | Sep 2025 to present
             </p>
 
-            <div className="space-y-4 text-white/60 leading-relaxed max-w-3xl">
+            <div className="space-y-4 text-neutral-600 leading-relaxed max-w-3xl">
               <p>
                 My research sits at the intersection of topology and machine
                 learning. Topological data analysis studies the shape of data:
@@ -60,14 +60,14 @@ export default function Research() {
               {topics.map((topic) => (
                 <span
                   key={topic}
-                  className="text-xs px-3 py-1.5 rounded-full bg-white/5 text-white/50 border border-white/8"
+                  className="text-xs px-3 py-1.5 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8"
                 >
                   {topic}
                 </span>
               ))}
             </div>
 
-            <p className="flex items-center gap-2 mt-8 text-sm text-white/35">
+            <p className="flex items-center gap-2 mt-8 text-sm text-neutral-400">
               <FiLock size={14} />
               Code private while the work is under way. Happy to talk about it in detail.
             </p>

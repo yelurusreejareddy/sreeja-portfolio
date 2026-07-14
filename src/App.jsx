@@ -32,12 +32,12 @@ function Navbar() {
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
     >
       <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--gold)" }}>SRY</a>
-      <div className="hidden md:flex items-center gap-5 text-sm text-white/70">
-        <a href="#about" className="hover:text-white transition-colors">About</a>
-        <a href="#research" className="hover:text-white transition-colors">Research</a>
-        <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-        <a href="#experience" className="hover:text-white transition-colors">Experience</a>
-        <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+      <div className="hidden md:flex items-center gap-5 text-sm text-neutral-600">
+        <a href="#about" className="hover:text-neutral-900 transition-colors">About</a>
+        <a href="#research" className="hover:text-neutral-900 transition-colors">Research</a>
+        <a href="#projects" className="hover:text-neutral-900 transition-colors">Projects</a>
+        <a href="#experience" className="hover:text-neutral-900 transition-colors">Experience</a>
+        <a href="#contact" className="hover:text-neutral-900 transition-colors">Contact</a>
       </div>
       <a
         href="/resume.pdf"
@@ -78,7 +78,7 @@ function Hero() {
             className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-white/70">Open to AI/ML engineering roles</span>
+            <span className="text-sm text-neutral-600">Open to AI/ML engineering roles</span>
           </motion.div>
 
           <motion.h1
@@ -98,7 +98,7 @@ function Hero() {
             initial={PAGE_VISIBLE ? "hidden" : false}
             animate="show"
             custom={0.15}
-            className="font-display text-xl sm:text-2xl text-white/85 min-h-16 mb-6"
+            className="font-display text-xl sm:text-2xl text-neutral-800 min-h-16 mb-6"
           >
             <Typewriter
               phrases={[
@@ -115,7 +115,7 @@ function Hero() {
             initial={PAGE_VISIBLE ? "hidden" : false}
             animate="show"
             custom={0.2}
-            className="text-lg text-white/60 max-w-xl mx-auto lg:mx-0 mb-10"
+            className="text-lg text-neutral-600 max-w-xl mx-auto lg:mx-0 mb-10"
           >
             Currently doing research in computational topology at DePaul
             University, and turning what I learn into projects you can try.
@@ -131,7 +131,7 @@ function Hero() {
             <Magnetic>
               <a
                 href="#projects"
-                className="inline-block px-7 py-3 rounded-full bg-white text-black font-medium hover:bg-white/85 transition-colors"
+                className="inline-block px-7 py-3 rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 transition-colors"
               >
                 View my work
               </a>
@@ -139,7 +139,7 @@ function Hero() {
             <Magnetic>
               <a
                 href="#contact"
-                className="inline-block px-7 py-3 rounded-full glass font-medium text-white/85 hover:border-white/30 transition-colors"
+                className="inline-block px-7 py-3 rounded-full glass font-medium text-neutral-800 hover:border-black/20 transition-colors"
               >
                 Get in touch
               </a>
@@ -151,15 +151,15 @@ function Hero() {
             initial={PAGE_VISIBLE ? "hidden" : false}
             animate="show"
             custom={0.4}
-            className="flex items-center justify-center lg:justify-start gap-5 text-white/50"
+            className="flex items-center justify-center lg:justify-start gap-5 text-neutral-500"
           >
-            <a href="https://github.com/yelurusreejareddy" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="GitHub">
+            <a href="https://github.com/yelurusreejareddy" target="_blank" rel="noreferrer" className="hover:text-neutral-900 transition-colors" aria-label="GitHub">
               <FiGithub size={20} />
             </a>
-            <a href="https://www.linkedin.com/in/sreeja-reddy-yeluru" target="_blank" rel="noreferrer" className="hover:text-white transition-colors" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/sreeja-reddy-yeluru" target="_blank" rel="noreferrer" className="hover:text-neutral-900 transition-colors" aria-label="LinkedIn">
               <FiLinkedin size={20} />
             </a>
-            <a href="mailto:yeluru.sreeja@gmail.com" className="hover:text-white transition-colors" aria-label="Email">
+            <a href="mailto:yeluru.sreeja@gmail.com" className="hover:text-neutral-900 transition-colors" aria-label="Email">
               <FiMail size={20} />
             </a>
           </motion.div>
@@ -178,10 +178,10 @@ function Hero() {
                 src="/sreeja.jpg"
                 alt="Sreeja Reddy Yeluru"
                 onError={() => setPhotoOk(false)}
-                className="relative w-80 max-w-full rounded-3xl border border-white/10 object-cover aspect-[4/5]"
+                className="relative w-80 max-w-full rounded-3xl border border-black/8 object-cover aspect-[4/5]"
               />
             ) : (
-              <div className="relative w-80 max-w-full rounded-3xl border border-white/10 aspect-[4/5] glass flex items-center justify-center">
+              <div className="relative w-80 max-w-full rounded-3xl border border-black/8 aspect-[4/5] glass flex items-center justify-center">
                 <span className="font-display text-6xl font-medium gradient-text">SRY</span>
               </div>
             )}
@@ -192,7 +192,7 @@ function Hero() {
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-10 text-white/30"
+        className="absolute bottom-10 text-neutral-400"
       >
         <FiArrowDown size={20} />
       </motion.div>
@@ -210,13 +210,13 @@ function FeaturedProject({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.12 }}
-      className="glass  p-8 flex flex-col gap-4 hover:border-amber-400/50 transition-colors group relative overflow-hidden"
+      className="glass  p-8 flex flex-col gap-4 hover:border-amber-500/60 transition-colors group relative overflow-hidden"
     >
       <div className="blob w-[200px] h-[200px] bg-amber-600 top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" />
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
           <span className="text-3xl">{project.emoji}</span>
-          <span className="flex items-center gap-1.5 text-xs text-emerald-300/90 bg-emerald-400/10 border border-emerald-400/20 rounded-full px-3 py-1">
+          <span className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             Live demo
           </span>
@@ -224,15 +224,15 @@ function FeaturedProject({ project, index }) {
         <h3 className="font-display text-xl font-medium mb-2 group-hover:gradient-text transition-all">
           {project.title}
         </h3>
-        <p className="text-sm text-white/55 leading-relaxed mb-4">{project.description}</p>
+        <p className="text-sm text-neutral-600 leading-relaxed mb-4">{project.description}</p>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-white/5 text-white/50 border border-white/8">
+            <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8">
               {tag}
             </span>
           ))}
         </div>
-        <p className="flex items-center gap-1.5 text-sm text-amber-300/80 mt-5 group-hover:text-amber-200 transition-colors">
+        <p className="flex items-center gap-1.5 text-sm text-amber-700 mt-5 group-hover:text-amber-800 transition-colors">
           Try it <FiExternalLink size={14} />
         </p>
       </div>
@@ -270,7 +270,7 @@ function Projects() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-white/50 text-center max-w-xl mx-auto mb-14"
+          className="text-neutral-500 text-center max-w-xl mx-auto mb-14"
         >
           These come from my Master's coursework and my own experiments. I
           deployed each one as a live demo on Hugging Face, so you can open
@@ -295,8 +295,8 @@ function Projects() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/5 py-10 px-6">
-      <div className="max-w-5xl mx-auto text-center text-sm text-white/35">
+    <footer className="border-t border-black/5 py-10 px-6">
+      <div className="max-w-5xl mx-auto text-center text-sm text-neutral-400">
         <p>Sreeja Reddy Yeluru, {new Date().getFullYear()}</p>
       </div>
     </footer>
@@ -305,7 +305,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <div className="bg-[#06060a] text-white min-h-screen relative">
+    <div className="min-h-screen relative">
       <CursorGlow />
       <Navbar />
       <Hero />

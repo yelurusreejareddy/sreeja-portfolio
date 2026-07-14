@@ -66,9 +66,9 @@ export default function TerminalSkills() {
           initial={PAGE_VISIBLE ? { opacity: 0, y: 20 } : false}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass rounded-2xl overflow-hidden"
+          className="terminal rounded-2xl overflow-hidden"
         >
-          <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/8">
+          <div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400/70" />
             <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
             <span className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
