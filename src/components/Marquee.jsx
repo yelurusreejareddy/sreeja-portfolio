@@ -19,8 +19,8 @@ const ITEMS = [
 
 export default function Marquee() {
   return (
-    <div className="py-8 border-y border-black/5 select-none dark:border-white/8 overflow-x-auto no-scrollbar">
-      <div className="flex items-center gap-3 w-max mx-auto px-6">
+    <div className="py-10 px-6 select-none">
+      <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
         {ITEMS.map((item) => (
           <motion.span
             key={item}
