@@ -14,13 +14,15 @@ export default function ProjectCard({ project, index }) {
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      initial={PAGE_VISIBLE ? { opacity: 0, y: 40 } : false}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={PAGE_VISIBLE ? { opacity: 0, x: 140, rotate: 4 } : false}
+      whileInView={{ opacity: 1, x: 0, rotate: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       whileHover={{ scale: 1.02 }}
       animate={{ rotateX: rotate.x, rotateY: rotate.y }}
       transition={{
-        default: { duration: 0.6, delay: Math.floor(index / 3) * 0.12 + (index % 3) * 0.08 },
+        opacity: { duration: 0.4, delay: Math.floor(index / 3) * 0.12 + (index % 3) * 0.08 },
+        x: { type: 'spring', stiffness: 140, damping: 16, delay: Math.floor(index / 3) * 0.12 + (index % 3) * 0.08 },
+        rotate: { type: 'spring', stiffness: 140, damping: 16, delay: Math.floor(index / 3) * 0.12 + (index % 3) * 0.08 },
         rotateX: { duration: 0.2, ease: 'easeOut' },
         rotateY: { duration: 0.2, ease: 'easeOut' },
         scale: { duration: 0.2 },

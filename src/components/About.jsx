@@ -76,10 +76,10 @@ export default function About() {
               {achievements.map((item, i) => (
                 <motion.div
                   key={item.title}
-                  initial={PAGE_VISIBLE ? { opacity: 0, x: 24 } : false}
+                  initial={PAGE_VISIBLE ? { opacity: 0, x: 32 } : false}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.5, delay: i * 0.22 }}
                   className="glass p-4 flex items-start gap-3"
                 >
                   <item.icon size={18} className="shrink-0 mt-0.5" style={{ color: item.color }} />
