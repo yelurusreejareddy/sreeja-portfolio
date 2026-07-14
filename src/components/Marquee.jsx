@@ -16,16 +16,15 @@ const ITEMS = [
 ]
 
 export default function Marquee() {
-  const doubled = [...ITEMS, ...ITEMS]
   return (
-    <div className="relative overflow-hidden py-6 border-y border-black/5 select-none dark:border-white/8">
-      <div className="marquee-track flex w-max items-center gap-10">
-        {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-10 shrink-0">
-            <span className="font-display text-sm uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500">
-              {item}
-            </span>
-            <span className="text-xs" style={{ color: 'var(--terracotta)', opacity: 0.5 }}>*</span>
+    <div className="py-10 px-6 border-y border-black/5 select-none dark:border-white/8">
+      <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
+        {ITEMS.map((item) => (
+          <span
+            key={item}
+            className="text-xs px-3 py-1.5 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8 dark:bg-white/[0.04] dark:text-neutral-400 dark:border-white/10"
+          >
+            {item}
           </span>
         ))}
       </div>
