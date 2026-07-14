@@ -25,7 +25,7 @@ export default function Marquee() {
             <span className="font-display text-sm uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500">
               {item}
             </span>
-            <span className="text-amber-600/60 text-xs dark:text-amber-400/50">*</span>
+            <span className="text-xs" style={{ color: 'var(--terracotta)', opacity: 0.5 }}>*</span>
           </span>
         ))}
       </div>

@@ -88,10 +88,10 @@ export default function Experience() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="relative pl-8"
             >
-              <span className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-amber-400" />
+              <span className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full" style={{ background: 'var(--terracotta)' }} />
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
                 <h3 className="font-display text-xl font-medium">{role.title}</h3>
-                <span className="text-amber-700 text-sm dark:text-amber-300">{role.org}</span>
+                <span className="text-sm" style={{ color: 'var(--terracotta)' }}>{role.org}</span>
               </div>
               <p className="text-sm text-neutral-400 mb-3 dark:text-neutral-500">
                 {role.period} | {role.location}
@@ -99,7 +99,7 @@ export default function Experience() {
               <ul className="space-y-2">
                 {role.points.map((point) => (
                   <li key={point} className="text-neutral-600 text-sm leading-relaxed flex gap-2 dark:text-neutral-300">
-                    <span className="text-amber-600 shrink-0 mt-0.5 dark:text-amber-400">-</span>
+                    <span className="shrink-0 mt-0.5" style={{ color: 'var(--terracotta)' }}>-</span>
                     {point}
                   </li>
                 ))}
@@ -129,9 +129,10 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass p-6 mt-4 border-amber-400/30"
+          className="glass p-6 mt-4"
+          style={{ borderColor: 'var(--terracotta)' }}
         >
-          <p className="text-xs uppercase tracking-[0.2em] text-amber-700 mb-2 dark:text-amber-300">
+          <p className="text-xs uppercase tracking-[0.2em] mb-2" style={{ color: 'var(--terracotta)' }}>
             Publication
           </p>
           <h3 className="font-display font-medium mb-1">

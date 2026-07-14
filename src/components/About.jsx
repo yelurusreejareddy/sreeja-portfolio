@@ -3,10 +3,10 @@ import { motion } from 'framer-motion'
 import { FiAward, FiBookOpen, FiStar, FiZap } from 'react-icons/fi'
 
 const achievements = [
-  { icon: FiZap, title: '4+ years of work experience', detail: 'Accenture, DePaul, and internships' },
-  { icon: FiStar, title: '4.0 GPA, M.S. in AI', detail: 'Presidential Scholarship, DePaul University' },
-  { icon: FiBookOpen, title: 'Published paper', detail: 'IJRASET, 2021' },
-  { icon: FiAward, title: '10 projects deployed as demos', detail: 'All live on Hugging Face' },
+  { icon: FiZap, title: '4+ years of work experience', detail: 'Accenture, DePaul, and internships', color: 'var(--terracotta)' },
+  { icon: FiStar, title: '4.0 GPA, M.S. in AI', detail: 'Presidential Scholarship, DePaul University', color: 'var(--sea)' },
+  { icon: FiBookOpen, title: 'Published paper', detail: 'IJRASET, 2021', color: 'var(--emerald)' },
+  { icon: FiAward, title: '10 projects deployed as demos', detail: 'All live on Hugging Face', color: 'var(--violet)' },
 ]
 
 export default function About() {
@@ -82,7 +82,7 @@ export default function About() {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="glass p-4 flex items-start gap-3"
                 >
-                  <item.icon size={18} className="shrink-0 mt-0.5" style={{ color: 'var(--gold)' }} />
+                  <item.icon size={18} className="shrink-0 mt-0.5" style={{ color: item.color }} />
                   <div>
                     <p className="font-medium text-sm text-neutral-900 dark:text-neutral-50">{item.title}</p>
                     <p className="text-xs text-neutral-500 mt-0.5 dark:text-neutral-400">{item.detail}</p>

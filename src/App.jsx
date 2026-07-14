@@ -32,7 +32,7 @@ function Navbar() {
       transition={{ duration: 0.6 }}
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
     >
-      <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--gold)" }}>SRY</a>
+      <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--terracotta)" }}>SRY</a>
       <div className="hidden md:flex items-center gap-5 text-sm text-neutral-600 dark:text-neutral-300">
         <a href="#about" className="hover:text-neutral-900 transition-colors dark:hover:text-white">About</a>
         <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
@@ -43,7 +43,8 @@ function Navbar() {
       <ThemeToggle />
       <a
         href="/resume.pdf"
-        className="text-sm px-4 py-1.5 rounded-full bg-amber-400 text-black font-medium hover:bg-amber-300 transition-colors"
+        className="text-sm px-4 py-1.5 rounded-full text-white font-medium transition-all hover:brightness-110"
+        style={{ background: 'var(--terracotta)' }}
       >
         Resume
       </a>
@@ -63,9 +64,8 @@ function Hero() {
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-28 pb-16">
-      <div className="absolute inset-0 grid-bg" />
-      <div className="blob blob-1 w-[420px] h-[420px] bg-amber-500 top-[-10%] left-[-5%] opacity-15" />
-      <div className="blob blob-2 w-[380px] h-[380px] bg-teal-500 bottom-[-10%] right-[-5%] opacity-15" />
+      <div className="blob blob-1 w-[420px] h-[420px] top-[-10%] left-[-5%] opacity-20" style={{ background: 'var(--terracotta)' }} />
+      <div className="blob blob-2 w-[380px] h-[380px] bottom-[-10%] right-[-5%] opacity-20" style={{ background: 'var(--sea)' }} />
 
       <motion.div
         style={{ scale, opacity }}
@@ -174,16 +174,16 @@ function Hero() {
           className="lg:col-span-2 hidden lg:flex justify-center"
         >
           <div className="relative">
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-amber-400/20 via-transparent to-teal-400/20 blur-xl" />
+            <div className="absolute -inset-4 arch blur-xl opacity-30" style={{ background: 'linear-gradient(160deg, var(--terracotta), transparent, var(--sea))' }} />
             {photoOk ? (
               <img
                 src="/sreeja.jpg"
                 alt="Sreeja Reddy Yeluru"
                 onError={() => setPhotoOk(false)}
-                className="relative w-80 max-w-full rounded-3xl border border-black/8 object-cover aspect-[4/5] dark:border-white/10"
+                className="relative w-80 max-w-full arch border border-black/8 object-cover aspect-[4/5] dark:border-white/10"
               />
             ) : (
-              <div className="relative w-80 max-w-full rounded-3xl border border-black/8 aspect-[4/5] glass flex items-center justify-center dark:border-white/10">
+              <div className="relative w-80 max-w-full arch border border-black/8 aspect-[4/5] glass flex items-center justify-center dark:border-white/10">
                 <span className="font-display text-6xl font-medium gradient-text">SRY</span>
               </div>
             )}
@@ -212,9 +212,9 @@ function FeaturedProject({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7, delay: index * 0.12 }}
-      className="glass p-8 flex flex-col gap-4 hover:border-amber-500/60 transition-colors group relative overflow-hidden"
+      className="glass p-8 flex flex-col gap-4 hover:border-[var(--terracotta)]/60 transition-colors group relative overflow-hidden"
     >
-      <div className="blob w-[200px] h-[200px] bg-amber-600 top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" />
+      <div className="blob w-[200px] h-[200px] top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" style={{ background: 'var(--terracotta)' }} />
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
           <span className="text-3xl">{project.emoji}</span>
@@ -234,7 +234,7 @@ function FeaturedProject({ project, index }) {
             </span>
           ))}
         </div>
-        <p className="flex items-center gap-1.5 text-sm text-amber-700 mt-5 group-hover:text-amber-800 transition-colors dark:text-amber-300 dark:group-hover:text-amber-200">
+        <p className="flex items-center gap-1.5 text-sm mt-5 transition-colors" style={{ color: 'var(--terracotta)' }}>
           Try it <FiExternalLink size={14} />
         </p>
       </div>

@@ -33,8 +33,8 @@ const links = [
 export default function Contact() {
   return (
     <section id="contact" className="relative py-28 px-6 overflow-hidden">
-      <div className="blob blob-1 w-[400px] h-[400px] bg-amber-600 bottom-[-20%] left-[10%] opacity-30" />
-      <div className="blob blob-3 w-[350px] h-[350px] bg-teal-600 bottom-[-10%] right-[10%] opacity-25" />
+      <div className="blob blob-1 w-[400px] h-[400px] bottom-[-20%] left-[10%] opacity-30" style={{ background: 'var(--terracotta)' }} />
+      <div className="blob blob-3 w-[350px] h-[350px] bottom-[-10%] right-[10%] opacity-25" style={{ background: 'var(--sea)' }} />
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
         <motion.p
@@ -85,7 +85,7 @@ export default function Contact() {
               rel="noreferrer"
               className="glass p-5 flex items-center gap-4 hover:border-black/15 hover:scale-[1.02] transition-all group text-left dark:hover:border-white/15"
             >
-              <link.icon size={22} className="text-amber-700 shrink-0 dark:text-amber-300" />
+              <link.icon size={22} className="shrink-0" style={{ color: 'var(--terracotta)' }} />
               <div className="min-w-0">
                 <p className="font-medium text-sm">{link.label}</p>
                 <p className="text-neutral-500 text-xs truncate dark:text-neutral-400">{link.handle}</p>

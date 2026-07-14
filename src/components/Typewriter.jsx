@@ -25,7 +25,7 @@ export default function Typewriter({ phrases, typingSpeed = 45, holdTime = 1800 
   return (
     <span>
       {phrase.slice(0, shown)}
-      <span className="inline-block w-[3px] h-[1em] bg-amber-300 align-middle ml-1 animate-pulse" />
+      <span className="inline-block w-[3px] h-[1em] align-middle ml-1 animate-pulse" style={{ background: 'var(--terracotta)' }} />
     </span>
   )
 }

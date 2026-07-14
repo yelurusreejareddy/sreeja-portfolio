@@ -25,7 +25,7 @@ export default function Research() {
           transition={{ duration: 0.7 }}
           className="glass p-8 sm:p-12 relative overflow-hidden"
         >
-          <div className="blob blob-2 w-[300px] h-[300px] bg-amber-600 top-[-30%] right-[-10%] opacity-25" />
+          <div className="blob blob-2 w-[300px] h-[300px] top-[-30%] right-[-10%] opacity-25" style={{ background: 'var(--sea)' }} />
 
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
