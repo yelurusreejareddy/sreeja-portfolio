@@ -3,6 +3,7 @@ import { PAGE_VISIBLE } from './lib/motionSafe'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink } from 'react-icons/fi'
 import CursorGlow from './components/CursorGlow'
+import { useTilt } from './lib/useTilt'
 import Marquee from './components/Marquee'
 import Typewriter from './components/Typewriter'
 import Magnetic from './components/Magnetic'
@@ -203,15 +204,28 @@ function Hero() {
 }
 
 function FeaturedProject({ project, index }) {
+  const { ref, rotate, onMouseMove, onMouseLeave } = useTilt(8)
+
   return (
     <motion.a
       href={project.url}
       target="_blank"
       rel="noreferrer"
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       initial={PAGE_VISIBLE ? { opacity: 0, y: 40 } : false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.7, delay: index * 0.12 }}
+      whileHover={{ scale: 1.02 }}
+      animate={{ rotateX: rotate.x, rotateY: rotate.y }}
+      transition={{
+        default: { duration: 0.7, delay: index * 0.12 },
+        rotateX: { duration: 0.2, ease: 'easeOut' },
+        rotateY: { duration: 0.2, ease: 'easeOut' },
+        scale: { duration: 0.2 },
+      }}
+      style={{ transformPerspective: 800 }}
       className="glass p-8 flex flex-col gap-4 hover:border-[var(--terracotta)]/60 transition-colors group relative overflow-hidden"
     >
       <div className="blob w-[200px] h-[200px] top-[-40%] right-[-20%] opacity-20 group-hover:opacity-35 transition-opacity" style={{ background: 'var(--terracotta)' }} />

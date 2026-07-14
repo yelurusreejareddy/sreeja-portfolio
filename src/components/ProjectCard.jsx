@@ -1,22 +1,10 @@
-import { useRef, useState } from 'react'
 import { PAGE_VISIBLE } from '../lib/motionSafe'
+import { useTilt } from '../lib/useTilt'
 import { motion } from 'framer-motion'
 import { FiExternalLink } from 'react-icons/fi'
 
 export default function ProjectCard({ project, index }) {
-  const ref = useRef(null)
-  const [rotate, setRotate] = useState({ x: 0, y: 0 })
-
-  function handleMouseMove(e) {
-    const rect = ref.current.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    setRotate({ x: py * -8, y: px * 10 })
-  }
-
-  function handleMouseLeave() {
-    setRotate({ x: 0, y: 0 })
-  }
+  const { ref, rotate, onMouseMove, onMouseLeave } = useTilt(10)
 
   return (
     <motion.a
@@ -24,13 +12,20 @@ export default function ProjectCard({ project, index }) {
       target="_blank"
       rel="noreferrer"
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       initial={PAGE_VISIBLE ? { opacity: 0, y: 40 } : false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
+      whileHover={{ scale: 1.02 }}
       animate={{ rotateX: rotate.x, rotateY: rotate.y }}
+      transition={{
+        default: { duration: 0.6, delay: Math.floor(index / 3) * 0.12 + (index % 3) * 0.08 },
+        rotateX: { duration: 0.2, ease: 'easeOut' },
+        rotateY: { duration: 0.2, ease: 'easeOut' },
+        scale: { duration: 0.2 },
+      }}
+      style={{ transformPerspective: 800 }}
       className="glass p-6 flex flex-col gap-3 hover:border-black/12 transition-colors cursor-pointer group dark:hover:border-white/15"
     >
       <div className="flex items-start justify-between gap-3">
