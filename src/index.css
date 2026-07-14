@@ -164,6 +164,14 @@ html, body, #root {
   border-radius: 160px 160px 14px 14px;
 }
 
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background: var(--terracotta);
   color: #fffbf5;
