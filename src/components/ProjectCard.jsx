@@ -16,7 +16,7 @@ export default function ProjectCard({ project, index }) {
       onMouseLeave={onMouseLeave}
       initial={PAGE_VISIBLE ? { opacity: 0, x: 140, rotate: 4 } : false}
       whileInView={{ opacity: 1, x: 0, rotate: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: false, margin: '-60px' }}
       whileHover={{ scale: 1.02 }}
       animate={{ rotateX: rotate.x, rotateY: rotate.y }}
       transition={{

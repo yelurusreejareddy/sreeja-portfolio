@@ -78,7 +78,7 @@ export default function About() {
                   key={item.title}
                   initial={PAGE_VISIBLE ? { opacity: 0, x: 32 } : false}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
+                  viewport={{ once: false, margin: '-40px' }}
                   transition={{ duration: 0.5, delay: i * 0.22 }}
                   className="glass p-4 flex items-start gap-3"
                 >
