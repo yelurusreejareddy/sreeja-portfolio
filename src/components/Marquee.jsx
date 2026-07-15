@@ -44,10 +44,6 @@ export default function Marquee() {
 
   return (
     <div ref={ref} className="relative py-10 px-6 select-none">
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-16 opacity-[0.08]"
-        style={{ background: 'linear-gradient(180deg, transparent, var(--sea))' }}
-      />
       <div className="relative max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-3">
         {ITEMS.map((item, i) => (
           <Word key={item} item={item} index={i} total={ITEMS.length} scrollYProgress={scrollYProgress} />
