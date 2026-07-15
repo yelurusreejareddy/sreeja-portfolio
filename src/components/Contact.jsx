@@ -37,6 +37,15 @@ export default function Contact() {
       <div className="blob blob-3 w-[350px] h-[350px] bottom-[-10%] right-[10%] opacity-25" style={{ background: 'var(--sea)' }} />
 
       <div className="max-w-3xl mx-auto text-center relative z-10">
+        <motion.p
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="hud-label mb-4"
+        >
+          Contact
+        </motion.p>
 
         <motion.h2
           initial={PAGE_VISIBLE ? { opacity: 0, y: 20 } : false}
