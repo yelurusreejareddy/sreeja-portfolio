@@ -48,7 +48,7 @@ function TerminalLine({ skill, delay }) {
 
 export default function TerminalSkills() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const inView = useInView(ref, { once: false, margin: '-100px' })
 
   return (
     <section className="relative py-24 px-6">

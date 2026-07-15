@@ -62,7 +62,7 @@ export default function Experience() {
         <motion.p
           initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
           className="hud-label mb-3"
         >
@@ -71,7 +71,7 @@ export default function Experience() {
         <motion.h2
           initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-3xl sm:text-4xl font-medium mb-14"
         >
@@ -84,7 +84,7 @@ export default function Experience() {
               key={role.title + role.org}
               initial={PAGE_VISIBLE ? { opacity: 0, x: -16 } : false}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="relative pl-8"
             >
@@ -111,7 +111,7 @@ export default function Experience() {
         <motion.div
           initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-16"
         >
@@ -127,7 +127,7 @@ export default function Experience() {
         <motion.div
           initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="glass p-6 mt-4"
           style={{ borderColor: 'var(--terracotta)' }}
