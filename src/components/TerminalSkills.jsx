@@ -53,15 +53,6 @@ export default function TerminalSkills() {
   return (
     <section className="relative py-24 px-6">
       <div className="max-w-2xl mx-auto" ref={ref}>
-        <motion.p
-          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="hud-label mb-6 text-center"
-        >
-          05 / Stack
-        </motion.p>
-
         <motion.div
           initial={PAGE_VISIBLE ? { opacity: 0, y: 20 } : false}
           animate={inView ? { opacity: 1, y: 0 } : {}}

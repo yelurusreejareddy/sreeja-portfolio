@@ -13,15 +13,6 @@ export default function About() {
   return (
     <section id="about" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
-        <motion.p
-          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="hud-label mb-3"
-        >
-          01 / About
-        </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           <motion.div

@@ -8,15 +8,6 @@ export default function Research() {
   return (
     <section id="research" className="relative py-28 px-6">
       <div className="max-w-5xl mx-auto">
-        <motion.p
-          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="hud-label mb-3"
-        >
-          02 / Research
-        </motion.p>
 
         <motion.div
           initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
