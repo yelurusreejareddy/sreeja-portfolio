@@ -69,6 +69,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
               className="hud-label mb-4"
+              style={{ fontSize: '12px', fontWeight: 400 }}
             >
               Highlights
             </motion.p>
