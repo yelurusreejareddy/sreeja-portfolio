@@ -12,6 +12,7 @@ import Research from './components/Research'
 import TerminalSkills from './components/TerminalSkills'
 import ProjectCard from './components/ProjectCard'
 import Experience from './components/Experience'
+import ChatWidget from './components/ChatWidget'
 import Contact from './components/Contact'
 import ThemeToggle from './components/ThemeToggle'
 import { projects } from './data/projects'
@@ -39,6 +40,7 @@ function Navbar() {
         <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
         <a href="#projects" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
         <a href="#experience" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Experience</a>
+        <a href="#chat" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</a>
         <a href="#contact" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Contact</a>
       </div>
       <ThemeToggle />
@@ -333,6 +335,7 @@ export default function App() {
       <Projects />
       <Experience />
       <TerminalSkills />
+      <ChatWidget />
       <Contact />
       <Footer />
     </div>
