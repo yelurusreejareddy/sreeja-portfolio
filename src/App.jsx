@@ -185,7 +185,7 @@ function Hero({ onOpenChat }) {
           initial={PAGE_VISIBLE ? { opacity: 0, scale: 0.95 } : false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-2 hidden lg:flex flex-col items-center gap-5 mt-2"
+          className="lg:col-span-2 hidden lg:flex flex-col items-center mt-2"
         >
           <div className="relative">
             <div className="absolute -inset-4 arch blur-xl opacity-30" style={{ background: 'linear-gradient(160deg, var(--terracotta), transparent, var(--sea))' }} />
@@ -202,7 +202,7 @@ function Hero({ onOpenChat }) {
               </div>
             )}
           </div>
-          <ChatTrigger onClick={onOpenChat} />
+          <ChatTrigger onClick={onOpenChat} className="mt-28" />
         </motion.div>
       </motion.div>
 

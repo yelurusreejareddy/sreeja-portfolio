@@ -45,39 +45,34 @@ export default function ChatDrawer({ open, onClose }) {
     <AnimatePresence>
       {open && (
         <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
-          />
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', stiffness: 300, damping: 32 }}
-            className="fixed top-0 right-0 h-full w-full sm:w-[420px] z-50 flex flex-col border-l"
-            style={{ background: 'var(--panel)', borderColor: 'var(--line)' }}
-          >
-            <div className="flex items-center justify-between px-5 py-4 border-b border-black/8 dark:border-white/10">
+        <div onClick={onClose} className="fixed inset-0 z-40" />
+        <motion.div
+          initial={{ opacity: 0, y: 16, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+          className="fixed z-50 flex flex-col rounded-2xl shadow-2xl border overflow-hidden
+            inset-x-4 bottom-4 h-[70vh]
+            sm:inset-x-auto sm:bottom-auto sm:top-24 sm:right-6 sm:w-[360px] sm:h-[500px]"
+          style={{ background: 'var(--panel)', borderColor: 'var(--line)' }}
+        >
+            <div className="flex items-center justify-between px-4 py-3 border-b border-black/8 dark:border-white/10">
               <div>
-                <p className="font-display font-medium">Ask about me</p>
+                <p className="font-display font-medium text-sm">Ask about me</p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">
-                  Runs in your browser, grounded in my resume and projects.
+                  Grounded in my resume and projects.
                 </p>
               </div>
               <button
                 onClick={onClose}
                 aria-label="Close chat"
-                className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white"
+                className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white shrink-0"
               >
-                <FiX size={18} />
+                <FiX size={16} />
               </button>
             </div>
 
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-4">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div
@@ -141,7 +136,7 @@ export default function ChatDrawer({ open, onClose }) {
                 <FiSend size={14} />
               </button>
             </form>
-          </motion.div>
+        </motion.div>
         </>
       )}
     </AnimatePresence>
