@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiSend, FiLoader, FiX } from 'react-icons/fi'
+import { FiSend, FiLoader, FiX, FiMic, FiVolume2, FiVolumeX } from 'react-icons/fi'
 import { answerQuestion, isEmbedderLoaded, EXAMPLES } from '../lib/chatEngine'
+import { useVoice } from '../lib/useVoice'
 
 export default function ChatDrawer({ open, onClose }) {
   const [messages, setMessages] = useState([
@@ -14,6 +15,13 @@ export default function ChatDrawer({ open, onClose }) {
   const [loading, setLoading] = useState(false)
   const [modelLoading, setModelLoading] = useState(false)
   const scrollRef = useRef(null)
+  const { listening, toggleListening, speechSupported, muted, toggleMuted, speak, stopSpeaking } = useVoice({
+    onResult: (transcript) => handleSend(transcript),
+  })
+
+  useEffect(() => {
+    if (!open) stopSpeaking()
+  }, [open, stopSpeaking])
 
   async function handleSend(question) {
     const q = question.trim()
@@ -27,6 +35,7 @@ export default function ChatDrawer({ open, onClose }) {
     try {
       const answerText = await answerQuestion(q)
       setMessages((m) => [...m, { role: 'assistant', text: answerText }])
+      speak(answerText)
     } catch (err) {
       setMessages((m) => [
         ...m,
@@ -63,13 +72,22 @@ export default function ChatDrawer({ open, onClose }) {
                   Grounded in my resume and projects.
                 </p>
               </div>
-              <button
-                onClick={onClose}
-                aria-label="Close chat"
-                className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white shrink-0"
-              >
-                <FiX size={16} />
-              </button>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  onClick={toggleMuted}
+                  aria-label={muted ? 'Unmute voice responses' : 'Mute voice responses'}
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white"
+                >
+                  {muted ? <FiVolumeX size={15} /> : <FiVolume2 size={15} />}
+                </button>
+                <button
+                  onClick={onClose}
+                  aria-label="Close chat"
+                  className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white"
+                >
+                  <FiX size={16} />
+                </button>
+              </div>
             </div>
 
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -122,10 +140,30 @@ export default function ChatDrawer({ open, onClose }) {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about my background, research, or projects..."
+                placeholder={listening ? 'Listening...' : 'Ask about my background, research, or projects...'}
                 className="flex-1 bg-transparent outline-none text-sm placeholder:text-neutral-400 dark:placeholder:text-neutral-500"
                 autoFocus
               />
+              {speechSupported && (
+                <motion.button
+                  type="button"
+                  onClick={toggleListening}
+                  aria-label={listening ? 'Stop listening' : 'Ask with your voice'}
+                  animate={listening ? { scale: [1, 1.12, 1] } : { scale: 1 }}
+                  transition={listening ? { duration: 1.1, repeat: Infinity, ease: 'easeInOut' } : {}}
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-colors shrink-0"
+                  style={
+                    listening
+                      ? { background: 'var(--terracotta)', color: 'white' }
+                      : undefined
+                  }
+                >
+                  <FiMic
+                    size={15}
+                    className={listening ? '' : 'text-neutral-500 dark:text-neutral-400'}
+                  />
+                </motion.button>
+              )}
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
