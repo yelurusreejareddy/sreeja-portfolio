@@ -15,9 +15,10 @@ export default function ChatDrawer({ open, onClose }) {
   const [loading, setLoading] = useState(false)
   const [modelLoading, setModelLoading] = useState(false)
   const scrollRef = useRef(null)
-  const { listening, toggleListening, speechSupported, muted, toggleMuted, speak, stopSpeaking } = useVoice({
-    onResult: (transcript) => handleSend(transcript),
-  })
+  const { listening, toggleListening, speechSupported, muted, toggleMuted, speak, stopSpeaking, voiceError } =
+    useVoice({
+      onResult: (transcript) => handleSend(transcript),
+    })
 
   useEffect(() => {
     if (!open) stopSpeaking()
@@ -114,6 +115,14 @@ export default function ChatDrawer({ open, onClose }) {
                 </div>
               )}
             </div>
+
+            {voiceError && (
+              <div className="px-4 pb-2">
+                <p className="text-xs" style={{ color: 'var(--clayred, #a3291f)' }}>
+                  {voiceError}
+                </p>
+              </div>
+            )}
 
             {messages.length === 1 && (
               <div className="px-5 pb-3 flex flex-wrap gap-2">
