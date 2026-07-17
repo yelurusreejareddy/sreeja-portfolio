@@ -7,7 +7,7 @@ export default function ChatDrawer({ open, onClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      text: "Hi, I'm a small assistant trained on Sreeja's resume, research, and projects. Ask me anything about her background.",
+      text: "Hi! I'm an AI assistant that knows about Sreeja's background, research, and projects. Ask me anything.",
     },
   ])
   const [input, setInput] = useState('')
