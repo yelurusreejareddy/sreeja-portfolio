@@ -1,29 +1,31 @@
 import { motion } from 'framer-motion'
-import { FiMessageCircle } from 'react-icons/fi'
+
+const SPIRAL_GRADIENT =
+  'conic-gradient(from 0deg, var(--terracotta), var(--violet), var(--sea), var(--emerald), var(--terracotta))'
 
 export default function ChatTrigger({ onClick, className = '' }) {
   return (
     <motion.button
       onClick={onClick}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      className={`relative inline-flex items-center gap-3 w-full max-w-[280px] pl-3 pr-5 py-2.5 rounded-full glass text-sm font-medium text-neutral-700 dark:text-neutral-200 ${className}`}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
+      className={`relative inline-flex items-center gap-6 bg-transparent text-sm font-medium text-neutral-700 dark:text-neutral-200 ${className}`}
     >
-      <span className="relative flex items-center justify-center w-7 h-7 shrink-0">
-        <motion.span
-          animate={{ scale: [1, 1.7], opacity: [0.5, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeOut' }}
-          className="absolute inset-0 rounded-full"
-          style={{ background: 'var(--terracotta)' }}
+      <span className="relative w-9 h-9 shrink-0">
+        <span
+          className="absolute -inset-2 rounded-full blur-md opacity-40"
+          style={{ background: SPIRAL_GRADIENT }}
         />
         <motion.span
-          animate={{ y: [0, -3, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative flex items-center justify-center w-7 h-7 rounded-full text-white"
-          style={{ background: 'var(--terracotta)' }}
-        >
-          <FiMessageCircle size={14} />
-        </motion.span>
+          animate={{ rotate: 360 }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-0 rounded-full"
+          style={{ background: SPIRAL_GRADIENT }}
+        />
+        <span
+          className="absolute inset-0 rounded-full"
+          style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55), transparent 60%)' }}
+        />
       </span>
       Curious? Ask me anything
     </motion.button>
