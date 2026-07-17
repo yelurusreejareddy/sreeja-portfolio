@@ -10,11 +10,16 @@ const ERROR_MESSAGES = {
 }
 
 // Prefer higher-quality/more natural-sounding system voices when available.
+// macOS/iOS ship "Enhanced" or "Premium" versions of voices like Samantha or Ava
+// that use much better on-device synthesis, but they must be downloaded manually
+// (System Settings -> Accessibility -> Spoken Content -> System Voice -> Manage
+// Voices). If one has been downloaded, prefer it; otherwise fall back to the
+// best voice that ships by default.
 const PREFERRED_VOICE_NAMES = [
   'Google US English',
-  'Samantha',
   'Microsoft Aria Online (Natural)',
   'Microsoft Jenny Online (Natural)',
+  'Samantha',
   'Ava',
   'Karen',
 ]
@@ -22,6 +27,9 @@ const PREFERRED_VOICE_NAMES = [
 function pickVoice() {
   const voices = window.speechSynthesis?.getVoices() || []
   if (!voices.length) return null
+
+  const enhanced = voices.find((v) => /\b(enhanced|premium)\b/i.test(v.name) && v.lang.startsWith('en'))
+  if (enhanced) return enhanced
 
   for (const name of PREFERRED_VOICE_NAMES) {
     const match = voices.find((v) => v.name.includes(name))

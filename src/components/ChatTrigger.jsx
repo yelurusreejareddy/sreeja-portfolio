@@ -9,7 +9,8 @@ export default function ChatTrigger({ onClick, className = '' }) {
       onClick={onClick}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
-      className={`relative inline-flex items-center gap-6 bg-transparent text-base font-medium text-neutral-700 dark:text-neutral-200 ${className}`}
+      className={`relative inline-flex items-center gap-6 bg-transparent rounded-full border pl-3 pr-6 py-2.5 text-base font-medium text-neutral-700 dark:text-neutral-200 ${className}`}
+      style={{ borderColor: 'var(--line)' }}
     >
       <span className="relative w-9 h-9 shrink-0">
         <motion.span
