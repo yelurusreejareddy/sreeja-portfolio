@@ -5,10 +5,10 @@ export const FALLBACK =
   "I don't have detail on that. Feel free to email Sreeja directly at yeluru.sreeja@gmail.com, or check her projects at huggingface.co/Sreeja-reddy."
 
 export const EXAMPLES = [
-  'What is she researching?',
-  'Tell me about the AI Policy RAG project',
-  'What was her role at Accenture?',
-  "What's her tech stack?",
+  'Tell me about Sreeja?',
+  'What were her projects?',
+  'Where did she work?',
+  'What are her skills?',
 ]
 
 let embedderPromise = null
@@ -50,15 +50,13 @@ export function findAnswer(question, queryEmbedding) {
   const scored = knowledgeData
     .map((chunk) => ({
       score: cosineSim(queryEmbedding, chunk.embedding) + keywordBoost(question, chunk.topic),
-      text: chunk.text,
+      text: chunk.short,
     }))
     .sort((a, b) => b.score - a.score)
 
   if (!scored.length || scored[0].score < SIMILARITY_FLOOR) return FALLBACK
 
-  const topScore = scored[0].score
-  const relevant = scored.filter((s) => s.score >= topScore * 0.9).slice(0, 2)
-  return relevant.map((s) => s.text).join('\n\n')
+  return scored[0].text
 }
 
 export async function answerQuestion(question) {
