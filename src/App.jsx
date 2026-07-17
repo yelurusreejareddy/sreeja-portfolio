@@ -12,7 +12,8 @@ import Research from './components/Research'
 import TerminalSkills from './components/TerminalSkills'
 import ProjectCard from './components/ProjectCard'
 import Experience from './components/Experience'
-import ChatWidget from './components/ChatWidget'
+import ChatDrawer from './components/ChatDrawer'
+import ChatTrigger from './components/ChatTrigger'
 import Contact from './components/Contact'
 import ThemeToggle from './components/ThemeToggle'
 import { projects } from './data/projects'
@@ -26,7 +27,7 @@ const fadeUp = {
   }),
 }
 
-function Navbar() {
+function Navbar({ onOpenChat }) {
   return (
     <motion.nav
       initial={PAGE_VISIBLE ? { opacity: 0, y: -16 } : false}
@@ -40,7 +41,7 @@ function Navbar() {
         <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
         <a href="#projects" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
         <a href="#experience" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Experience</a>
-        <a href="#chat" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</a>
+        <button onClick={onOpenChat} className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</button>
         <a href="#contact" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Contact</a>
       </div>
       <ThemeToggle />
@@ -55,7 +56,7 @@ function Navbar() {
   )
 }
 
-function Hero() {
+function Hero({ onOpenChat }) {
   const heroRef = useRef(null)
   const [photoOk, setPhotoOk] = useState(true)
   const { scrollYProgress } = useScroll({
@@ -168,13 +169,23 @@ function Hero() {
               <FiMail size={20} />
             </a>
           </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial={PAGE_VISIBLE ? "hidden" : false}
+            animate="show"
+            custom={0.5}
+            className="flex justify-center lg:hidden mt-8"
+          >
+            <ChatTrigger onClick={onOpenChat} />
+          </motion.div>
         </div>
 
         <motion.div
           initial={PAGE_VISIBLE ? { opacity: 0, scale: 0.95 } : false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="lg:col-span-2 hidden lg:flex justify-center mt-2"
+          className="lg:col-span-2 hidden lg:flex flex-col items-center gap-5 mt-2"
         >
           <div className="relative">
             <div className="absolute -inset-4 arch blur-xl opacity-30" style={{ background: 'linear-gradient(160deg, var(--terracotta), transparent, var(--sea))' }} />
@@ -191,6 +202,7 @@ function Hero() {
               </div>
             )}
           </div>
+          <ChatTrigger onClick={onOpenChat} />
         </motion.div>
       </motion.div>
 
@@ -324,20 +336,22 @@ function Footer() {
 }
 
 export default function App() {
+  const [chatOpen, setChatOpen] = useState(false)
+
   return (
     <div className="min-h-screen relative">
       <CursorGlow />
-      <Navbar />
-      <Hero />
+      <Navbar onOpenChat={() => setChatOpen(true)} />
+      <Hero onOpenChat={() => setChatOpen(true)} />
       <Marquee />
       <About />
       <Research />
       <Projects />
       <Experience />
       <TerminalSkills />
-      <ChatWidget />
       <Contact />
       <Footer />
+      <ChatDrawer open={chatOpen} onClose={() => setChatOpen(false)} />
     </div>
   )
 }
