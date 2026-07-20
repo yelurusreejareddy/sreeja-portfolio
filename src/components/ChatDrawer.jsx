@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiSend, FiLoader, FiX, FiMic, FiVolume2, FiVolumeX } from 'react-icons/fi'
+import { FiSend, FiLoader, FiX, FiMic } from 'react-icons/fi'
 import { answerQuestion, isEmbedderLoaded, EXAMPLES } from '../lib/chatEngine'
 import { useVoice } from '../lib/useVoice'
 
@@ -15,14 +15,9 @@ export default function ChatDrawer({ open, onClose }) {
   const [loading, setLoading] = useState(false)
   const [modelLoading, setModelLoading] = useState(false)
   const scrollRef = useRef(null)
-  const { listening, toggleListening, speechSupported, muted, toggleMuted, speak, stopSpeaking, voiceError } =
-    useVoice({
-      onResult: (transcript) => handleSend(transcript),
-    })
-
-  useEffect(() => {
-    if (!open) stopSpeaking()
-  }, [open, stopSpeaking])
+  const { listening, toggleListening, speechSupported, voiceError } = useVoice({
+    onResult: (transcript) => handleSend(transcript),
+  })
 
   async function handleSend(question) {
     const q = question.trim()
@@ -36,7 +31,6 @@ export default function ChatDrawer({ open, onClose }) {
     try {
       const answerText = await answerQuestion(q)
       setMessages((m) => [...m, { role: 'assistant', text: answerText }])
-      speak(answerText)
     } catch (err) {
       setMessages((m) => [
         ...m,
@@ -73,22 +67,13 @@ export default function ChatDrawer({ open, onClose }) {
                   Grounded in my resume and projects.
                 </p>
               </div>
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  onClick={toggleMuted}
-                  aria-label={muted ? 'Unmute voice responses' : 'Mute voice responses'}
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white"
-                >
-                  {muted ? <FiVolumeX size={15} /> : <FiVolume2 size={15} />}
-                </button>
-                <button
-                  onClick={onClose}
-                  aria-label="Close chat"
-                  className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white"
-                >
-                  <FiX size={16} />
-                </button>
-              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close chat"
+                className="w-7 h-7 rounded-full flex items-center justify-center text-neutral-500 hover:text-neutral-900 transition-colors dark:text-neutral-400 dark:hover:text-white shrink-0"
+              >
+                <FiX size={16} />
+              </button>
             </div>
 
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
