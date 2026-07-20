@@ -18,19 +18,19 @@ export const SUGGESTIONS_PER_TURN = 3
 
 const SMALL_TALK = [
   {
-    pattern: /^\s*(hi|hello|hey|yo|sup|good morning|good afternoon|good evening)\b/i,
+    pattern: /^\s*(hi|hello|hey|yo|sup|good morning|good afternoon|good evening)\s*(there)?\s*[!.,]*\s*$/i,
     reply: "Hello! How can I help you today? Ask me anything about Sreeja's background, research, or projects.",
   },
   {
-    pattern: /how are you|how's it going|how are things/i,
+    pattern: /^\s*how(?:'s| is| are)?\s*(you|it going|things)\s*[!.?,]*\s*$/i,
     reply: "I'm doing well, thanks for asking! I'm here to answer questions about Sreeja — what would you like to know?",
   },
   {
-    pattern: /^\s*(thanks|thank you|thx|appreciate it)\b/i,
+    pattern: /^\s*(thanks|thank you|thx|appreciate it)\s*[!.,]*\s*$/i,
     reply: "You're welcome! Let me know if you have any other questions about Sreeja.",
   },
   {
-    pattern: /^\s*(bye|goodbye|see ya|see you|later)\b/i,
+    pattern: /^\s*(bye|goodbye|see ya|see you|later)\s*[!.,]*\s*$/i,
     reply: 'Take care! Feel free to come back anytime you have questions about Sreeja.',
   },
   {
