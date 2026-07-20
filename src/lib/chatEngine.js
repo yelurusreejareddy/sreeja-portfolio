@@ -6,8 +6,8 @@ export const FALLBACK =
 
 export const SUGGESTION_POOL = [
   'Tell me about Sreeja?',
-  'What is she working on right now?',
-  'What did she do at Accenture?',
+  "What's she working on?",
+  'Her role at Accenture?',
   'What are her projects?',
   'What are her skills?',
   "What's her education?",
@@ -15,6 +15,34 @@ export const SUGGESTION_POOL = [
 ]
 
 export const SUGGESTIONS_PER_TURN = 3
+
+const SMALL_TALK = [
+  {
+    pattern: /^\s*(hi|hello|hey|yo|sup|good morning|good afternoon|good evening)\b/i,
+    reply: "Hello! How can I help you today? Ask me anything about Sreeja's background, research, or projects.",
+  },
+  {
+    pattern: /how are you|how's it going|how are things/i,
+    reply: "I'm doing well, thanks for asking! I'm here to answer questions about Sreeja — what would you like to know?",
+  },
+  {
+    pattern: /^\s*(thanks|thank you|thx|appreciate it)\b/i,
+    reply: "You're welcome! Let me know if you have any other questions about Sreeja.",
+  },
+  {
+    pattern: /^\s*(bye|goodbye|see ya|see you|later)\b/i,
+    reply: 'Take care! Feel free to come back anytime you have questions about Sreeja.',
+  },
+  {
+    pattern: /^\s*(ok|okay|cool|nice|great|got it|sounds good)\s*[.!]?\s*$/i,
+    reply: 'Glad that helps! Anything else you want to know about Sreeja?',
+  },
+]
+
+function matchSmallTalk(question) {
+  const match = SMALL_TALK.find(({ pattern }) => pattern.test(question))
+  return match?.reply ?? null
+}
 
 let embedderPromise = null
 export function getEmbedder() {
@@ -65,6 +93,9 @@ export function findAnswer(question, queryEmbedding) {
 }
 
 export async function answerQuestion(question) {
+  const smallTalkReply = matchSmallTalk(question)
+  if (smallTalkReply) return smallTalkReply
+
   const embedder = await getEmbedder()
   const output = await embedder(question, { pooling: 'mean', normalize: true })
   const queryEmbedding = Array.from(output.data)

@@ -77,8 +77,8 @@ export default function ChatDrawer({ open, onClose }) {
           exit={{ opacity: 0, y: 16, scale: 0.96 }}
           transition={{ type: 'spring', stiffness: 320, damping: 28 }}
           className="fixed z-50 flex flex-col rounded-2xl shadow-2xl border overflow-hidden
-            inset-x-4 bottom-4 h-[70vh]
-            sm:inset-x-auto sm:bottom-auto sm:top-24 sm:right-6 sm:w-[360px] sm:h-[500px]"
+            inset-x-4 bottom-4 h-[80vh]
+            sm:inset-x-auto sm:bottom-auto sm:top-24 sm:right-6 sm:w-[380px] sm:h-[640px]"
           style={{ background: 'var(--panel)', borderColor: 'var(--line)' }}
         >
             <div className="flex items-center justify-between px-4 py-3 border-b border-black/8 dark:border-white/10">
