@@ -1,23 +1,32 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiSend, FiLoader, FiX, FiMic } from 'react-icons/fi'
-import { answerQuestion, isEmbedderLoaded, EXAMPLES } from '../lib/chatEngine'
+import { answerQuestion, isEmbedderLoaded, SUGGESTION_POOL, SUGGESTIONS_PER_TURN } from '../lib/chatEngine'
 import { useVoice } from '../lib/useVoice'
 
+const WELCOME_MESSAGE = {
+  role: 'assistant',
+  text: "Hi! I'm an AI assistant that knows about Sreeja's background, research, and projects. Ask me anything.",
+}
+
 export default function ChatDrawer({ open, onClose }) {
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      text: "Hi! I'm an AI assistant that knows about Sreeja's background, research, and projects. Ask me anything.",
-    },
-  ])
+  const [messages, setMessages] = useState([WELCOME_MESSAGE])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [modelLoading, setModelLoading] = useState(false)
+  const [usedSuggestions, setUsedSuggestions] = useState([])
   const scrollRef = useRef(null)
   const { listening, toggleListening, speechSupported, voiceError } = useVoice({
     onResult: (transcript) => handleSend(transcript),
   })
+
+  useEffect(() => {
+    if (!open) {
+      setMessages([WELCOME_MESSAGE])
+      setInput('')
+      setUsedSuggestions([])
+    }
+  }, [open])
 
   async function handleSend(question) {
     const q = question.trim()
@@ -44,6 +53,18 @@ export default function ChatDrawer({ open, onClose }) {
       })
     }
   }
+
+  function handleSuggestionClick(suggestion) {
+    setUsedSuggestions((u) => [...u, suggestion])
+    handleSend(suggestion)
+  }
+
+  const nextSuggestions = SUGGESTION_POOL.filter((s) => !usedSuggestions.includes(s)).slice(
+    0,
+    SUGGESTIONS_PER_TURN
+  )
+  const lastMessage = messages[messages.length - 1]
+  const showSuggestions = !loading && lastMessage?.role === 'assistant' && nextSuggestions.length > 0
 
   return (
     <AnimatePresence>
@@ -109,15 +130,15 @@ export default function ChatDrawer({ open, onClose }) {
               </div>
             )}
 
-            {messages.length === 1 && (
+            {showSuggestions && (
               <div className="px-5 pb-3 flex flex-wrap gap-2">
-                {EXAMPLES.map((ex) => (
+                {nextSuggestions.map((s) => (
                   <button
-                    key={ex}
-                    onClick={() => handleSend(ex)}
+                    key={s}
+                    onClick={() => handleSuggestionClick(s)}
                     className="text-xs px-3 py-1.5 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8 hover:text-neutral-900 transition-colors dark:bg-white/[0.04] dark:text-neutral-400 dark:border-white/10 dark:hover:text-white"
                   >
-                    {ex}
+                    {s}
                   </button>
                 ))}
               </div>

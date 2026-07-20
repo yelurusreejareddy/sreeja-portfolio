@@ -4,12 +4,17 @@ export const SIMILARITY_FLOOR = 0.35
 export const FALLBACK =
   "I don't have detail on that. Feel free to email Sreeja directly at yeluru.sreeja@gmail.com, or check her projects at huggingface.co/Sreeja-reddy."
 
-export const EXAMPLES = [
+export const SUGGESTION_POOL = [
   'Tell me about Sreeja?',
-  'What were her projects?',
-  'Where did she work?',
+  'What is she working on right now?',
+  'What did she do at Accenture?',
+  'What are her projects?',
   'What are her skills?',
+  "What's her education?",
+  'How can I reach her?',
 ]
+
+export const SUGGESTIONS_PER_TURN = 3
 
 let embedderPromise = null
 export function getEmbedder() {
