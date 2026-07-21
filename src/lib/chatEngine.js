@@ -44,6 +44,25 @@ function matchSmallTalk(question) {
   return match?.reply ?? null
 }
 
+// A few phrasings are ambiguous enough (short, generic wording) that raw embedding
+// similarity favors the wrong chunk even with keyword boosting. Route them directly.
+const TOPIC_OVERRIDES = [
+  {
+    pattern: /working on|what.?s she (doing|up to)( now| currently| these days| right now)?\b|current project/i,
+    topicKeyword: 'researching',
+  },
+]
+
+function matchTopicOverride(question) {
+  for (const { pattern, topicKeyword } of TOPIC_OVERRIDES) {
+    if (pattern.test(question)) {
+      const chunk = knowledgeData.find((c) => c.topic.includes(topicKeyword))
+      if (chunk) return chunk.short
+    }
+  }
+  return null
+}
+
 let embedderPromise = null
 export function getEmbedder() {
   if (!embedderPromise) {
@@ -69,14 +88,32 @@ const STOPWORDS = new Set([
   'an', 'what', 'how', 'who', 'me', 'do', 'does', 'did',
 ])
 
-function keywordBoost(query, topic) {
-  const queryLower = query.toLowerCase()
-  const topicWords = (topic.toLowerCase().match(/[a-z0-9]+/g) || []).filter(
+function extractTopicWords(topic) {
+  return (topic.toLowerCase().match(/[a-z0-9]+/g) || []).filter(
     (w) => w.length > 2 && !STOPWORDS.has(w)
   )
-  let overlap = 0
-  for (const w of topicWords) if (queryLower.includes(w)) overlap++
-  return overlap > 0 ? 0.28 * overlap : 0
+}
+
+// Words shared across many topics (e.g. "work") are weak signals; words unique to one
+// or two topics (e.g. "relocate") are strong signals. Weight overlap by rarity so a
+// generic word in a longer topic string can't outweigh a specific one elsewhere.
+const topicWordDocFreq = (() => {
+  const freq = new Map()
+  for (const chunk of knowledgeData) {
+    for (const w of new Set(extractTopicWords(chunk.topic))) {
+      freq.set(w, (freq.get(w) || 0) + 1)
+    }
+  }
+  return freq
+})()
+
+function keywordBoost(query, topic) {
+  const queryLower = query.toLowerCase()
+  let boost = 0
+  for (const w of extractTopicWords(topic)) {
+    if (queryLower.includes(w)) boost += 0.32 / (topicWordDocFreq.get(w) || 1)
+  }
+  return boost
 }
 
 export function findAnswer(question, queryEmbedding) {
@@ -95,6 +132,9 @@ export function findAnswer(question, queryEmbedding) {
 export async function answerQuestion(question) {
   const smallTalkReply = matchSmallTalk(question)
   if (smallTalkReply) return smallTalkReply
+
+  const overrideReply = matchTopicOverride(question)
+  if (overrideReply) return overrideReply
 
   const embedder = await getEmbedder()
   const output = await embedder(question, { pooling: 'mean', normalize: true })
