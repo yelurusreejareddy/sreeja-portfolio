@@ -85,13 +85,29 @@ function cosineSim(a, b) {
 
 const STOPWORDS = new Set([
   'the', 'and', 'for', 'she', 'her', 'with', 'about', 'is', 'was', 'to', 'of', 'at', 'in', 'a',
-  'an', 'what', 'how', 'who', 'me', 'do', 'does', 'did',
+  'an', 'what', 'how', 'who', 'me', 'do', 'does', 'did', 'can', 'could', 'would', 'should',
+  'will', 'tell', 'explain', 'want', 'need', 'please', 'you', 'your',
+  'yourself', 'this', 'that', 'these', 'those', 'most', 'some', 'any', 'good', 'done',
 ])
 
+// Light suffix stripping so "mainframes"/"mainframe" and "clients"/"client" match as the
+// same word, without falling back to raw substring checks (which wrongly match "out"
+// inside "about"). Only strips genuine inflectional endings, not arbitrary substrings.
+function stem(word) {
+  if (word.length > 5 && word.endsWith('ing')) return word.slice(0, -3)
+  if (word.length > 4 && word.endsWith('ies')) return word.slice(0, -3) + 'y'
+  if (word.length > 4 && word.endsWith('ed')) return word.slice(0, -2)
+  // Plain "s" strip covers both "mainframes" -> "mainframe" (base already ends in "e")
+  // and "clients" -> "client". A dedicated "es" rule would wrongly turn "mainframes"
+  // into "mainfram" by stripping two characters from a base that only added one "s".
+  if (word.length > 3 && word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1)
+  return word
+}
+
 function extractTopicWords(topic) {
-  return (topic.toLowerCase().match(/[a-z0-9]+/g) || []).filter(
-    (w) => w.length > 2 && !STOPWORDS.has(w)
-  )
+  return (topic.toLowerCase().match(/[a-z0-9]+/g) || [])
+    .filter((w) => w.length > 2 && !STOPWORDS.has(w))
+    .map(stem)
 }
 
 // Words shared across many topics (e.g. "work") are weak signals; words unique to one
@@ -107,19 +123,25 @@ const topicWordDocFreq = (() => {
   return freq
 })()
 
-function keywordBoost(query, topic) {
-  const queryLower = query.toLowerCase()
+function extractQueryWords(query) {
+  return new Set((query.toLowerCase().match(/[a-z0-9]+/g) || []).map(stem))
+}
+
+// Must be exact (stemmed) word matches, not raw substring checks — otherwise a topic
+// word like "out" spuriously matches inside an unrelated query word like "about".
+function keywordBoost(queryWords, topic) {
   let boost = 0
   for (const w of extractTopicWords(topic)) {
-    if (queryLower.includes(w)) boost += 0.4 / (topicWordDocFreq.get(w) || 1)
+    if (queryWords.has(w)) boost += 0.4 / (topicWordDocFreq.get(w) || 1)
   }
   return boost
 }
 
 export function findAnswer(question, queryEmbedding) {
+  const queryWords = extractQueryWords(question)
   const scored = knowledgeData
     .map((chunk) => ({
-      score: cosineSim(queryEmbedding, chunk.embedding) + keywordBoost(question, chunk.topic),
+      score: cosineSim(queryEmbedding, chunk.embedding) + keywordBoost(queryWords, chunk.topic),
       text: chunk.short,
     }))
     .sort((a, b) => b.score - a.score)
