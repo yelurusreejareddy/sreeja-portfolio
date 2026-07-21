@@ -147,7 +147,7 @@ function Hero({ onOpenChat }) {
             className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-neutral-600 dark:text-neutral-300">Open to AI/ML engineering roles</span>
+            <span className="text-sm text-neutral-600 dark:text-neutral-300">Open to AI/ML Engineer &amp; Data Scientist roles</span>
           </motion.div>
 
           <motion.h1

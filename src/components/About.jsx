@@ -55,9 +55,10 @@ export default function About() {
                 leaving them in notebooks.
               </p>
               <p>
-                Now I'm looking for an AI or ML engineering role where I can
-                bring both sides together: the engineering habits from my
-                Accenture years and the ML depth from my Master's.
+                Now I'm looking for my next role as an AI/ML Engineer or
+                Data Scientist, somewhere I can bring both sides together:
+                the engineering habits from my Accenture years and the ML
+                depth from my Master's.
               </p>
             </div>
           </motion.div>

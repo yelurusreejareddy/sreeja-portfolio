@@ -65,9 +65,9 @@ export default function Contact() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-neutral-600 max-w-xl mx-auto mb-12 dark:text-neutral-300"
         >
-          I'm actively looking for AI and ML engineering roles. If you're
-          hiring, or just want to talk about RAG, reinforcement learning, or
-          topology, my inbox is open.
+          I'm actively looking for my next role as an AI/ML Engineer or
+          Data Scientist. If you're hiring, or just want to talk about RAG,
+          reinforcement learning, or topology, my inbox is open.
         </motion.p>
 
         <motion.div
