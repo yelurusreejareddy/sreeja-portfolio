@@ -111,7 +111,7 @@ function keywordBoost(query, topic) {
   const queryLower = query.toLowerCase()
   let boost = 0
   for (const w of extractTopicWords(topic)) {
-    if (queryLower.includes(w)) boost += 0.32 / (topicWordDocFreq.get(w) || 1)
+    if (queryLower.includes(w)) boost += 0.4 / (topicWordDocFreq.get(w) || 1)
   }
   return boost
 }
