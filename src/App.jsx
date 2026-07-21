@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { PAGE_VISIBLE } from './lib/motionSafe'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink } from 'react-icons/fi'
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
+import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiExternalLink, FiMenu, FiX } from 'react-icons/fi'
 import CursorGlow from './components/CursorGlow'
 import { useTilt } from './lib/useTilt'
 import Marquee from './components/Marquee'
@@ -27,32 +27,95 @@ const fadeUp = {
   }),
 }
 
+const NAV_LINKS = [
+  { href: '#about', label: 'About' },
+  { href: '#research', label: 'Research' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#contact', label: 'Contact' },
+]
+
 function Navbar({ onOpenChat }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <motion.nav
-      initial={PAGE_VISIBLE ? { opacity: 0, y: -16 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
-    >
-      <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--terracotta)" }}>SRY</a>
-      <div className="hidden md:flex items-center gap-5 text-sm text-neutral-600 dark:text-neutral-300">
-        <a href="#about" className="hover:text-neutral-900 transition-colors dark:hover:text-white">About</a>
-        <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
-        <a href="#projects" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
-        <a href="#experience" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Experience</a>
-        <button onClick={onOpenChat} className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</button>
-        <a href="#contact" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Contact</a>
-      </div>
-      <ThemeToggle />
-      <a
-        href="/resume.pdf"
-        className="text-sm px-4 py-1.5 rounded-full text-white font-medium transition-all hover:brightness-110"
-        style={{ background: 'var(--terracotta)' }}
+    <>
+      <motion.nav
+        initial={PAGE_VISIBLE ? { opacity: 0, y: -16 } : false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-50 glass rounded-full px-6 py-3 flex items-center gap-6"
       >
-        Resume
-      </a>
-    </motion.nav>
+        <a href="#" className="font-mono text-sm font-medium" style={{ color: "var(--terracotta)" }}>SRY</a>
+        <div className="hidden md:flex items-center gap-5 text-sm text-neutral-600 dark:text-neutral-300">
+          <a href="#about" className="hover:text-neutral-900 transition-colors dark:hover:text-white">About</a>
+          <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
+          <a href="#projects" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
+          <a href="#experience" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Experience</a>
+          <button onClick={onOpenChat} className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</button>
+          <a href="#contact" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Contact</a>
+        </div>
+        <ThemeToggle />
+        <a
+          href="/resume.pdf"
+          className="hidden sm:inline-block text-sm px-4 py-1.5 rounded-full text-white font-medium transition-all hover:brightness-110"
+          style={{ background: 'var(--terracotta)' }}
+        >
+          Resume
+        </a>
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors"
+        >
+          {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
+        </button>
+      </motion.nav>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <div onClick={() => setMenuOpen(false)} className="fixed inset-0 z-40 md:hidden" />
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+              className="fixed top-24 left-1/2 -translate-x-1/2 z-50 glass rounded-3xl px-6 py-5 flex flex-col items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300 md:hidden"
+            >
+              {NAV_LINKS.map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className="hover:text-neutral-900 transition-colors dark:hover:text-white"
+                >
+                  {label}
+                </a>
+              ))}
+              <button
+                onClick={() => {
+                  setMenuOpen(false)
+                  onOpenChat()
+                }}
+                className="hover:text-neutral-900 transition-colors dark:hover:text-white"
+              >
+                Chat
+              </button>
+              <a
+                href="/resume.pdf"
+                onClick={() => setMenuOpen(false)}
+                className="text-sm px-4 py-1.5 rounded-full text-white font-medium transition-all hover:brightness-110"
+                style={{ background: 'var(--terracotta)' }}
+              >
+                Resume
+              </a>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
