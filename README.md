@@ -1,16 +1,37 @@
-# React + Vite
+# Sreeja Reddy Yeluru — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Personal portfolio site built with React, Vite, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + Vite
+- Tailwind CSS v4
+- Framer Motion for animation
+- `@huggingface/transformers` (transformers.js) for the in-browser chatbot
 
-## React Compiler
+## The chatbot
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The "Ask about me" chatbot answers visitor questions about my background, research, and
+projects — entirely client-side, no backend or paid API.
 
-## Expanding the Oxlint configuration
+**How it works:** questions are embedded in-browser with `Xenova/all-MiniLM-L6-v2`
+(via transformers.js, running as ONNX/WASM) and matched against a small set of
+pre-written, fact-checked answers using a hybrid of cosine similarity and an
+IDF-weighted keyword score (`src/lib/chatEngine.js`). The keyword layer exists because
+raw embedding similarity alone misranks some short or ambiguous phrasings — e.g. a
+jargon-heavy answer can score lower on cosine similarity than an unrelated one for a
+casual query, so keyword overlap (weighted by how rare/specific each word is across
+the whole topic set) corrects for that.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+**Why not a generative model?** I evaluated swapping this for a small LLM running
+in-browser (`Qwen2.5-0.5B` / `1.5B-Instruct` via transformers.js) that would read
+retrieved context and write a real answer instead of picking a pre-written one. In
+testing, free-form generation fabricated specifics that were never in the provided
+context (e.g. inventing file formats a project never used) even with explicit
+grounding instructions — a known failure mode of small instruction-tuned models, not
+specific to that model choice. A constrained "pick the best existing answer" variant
+avoided fabrication but wasn't more accurate than the tuned retrieval system on the
+same test set. Since the chatbot represents real professional background to
+recruiters, I kept retrieval-only: it's fully accurate to the underlying facts, has
+no hallucination risk, and is faster and free to run for every visitor regardless of
+their device.
