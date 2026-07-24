@@ -311,10 +311,16 @@ function FeaturedProject({ project, index }) {
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-4">
           <span className="text-3xl">{project.emoji}</span>
-          <span className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 dark:text-emerald-300 dark:bg-emerald-400/10 dark:border-emerald-400/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            Live demo
-          </span>
+          {project.live ? (
+            <span className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 dark:text-emerald-300 dark:bg-emerald-400/10 dark:border-emerald-400/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              Live demo
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5 text-xs text-neutral-500 bg-black/[0.03] border border-black/8 rounded-full px-3 py-1 dark:text-neutral-400 dark:bg-white/[0.04] dark:border-white/10">
+              Code on GitHub
+            </span>
+          )}
         </div>
         <h3 className="font-display text-xl font-medium mb-2 group-hover:gradient-text transition-all">
           {project.title}
@@ -328,7 +334,7 @@ function FeaturedProject({ project, index }) {
           ))}
         </div>
         <p className="flex items-center gap-1.5 text-sm mt-5 transition-colors" style={{ color: 'var(--terracotta)' }}>
-          Try it <FiExternalLink size={14} />
+          {project.live ? 'Try it' : 'View code'} <FiExternalLink size={14} />
         </p>
       </div>
     </motion.a>
@@ -367,9 +373,9 @@ function Projects() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-neutral-500 text-center max-w-xl mx-auto mb-14 dark:text-neutral-400"
         >
-          These come from my Master's coursework and my own experiments. I
-          deployed each one as a live demo on Hugging Face, so you can open
-          any card and see for yourself how it works.
+          These come from my Master's coursework and my own experiments. The
+          ones marked live are running demos on Hugging Face you can try right
+          now, and the rest link straight to the code on GitHub.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
