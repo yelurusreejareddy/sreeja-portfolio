@@ -97,8 +97,8 @@ function stem(word) {
   if (word.length > 5 && word.endsWith('ing')) return word.slice(0, -3)
   if (word.length > 4 && word.endsWith('ies')) return word.slice(0, -3) + 'y'
   if (word.length > 4 && word.endsWith('ed')) return word.slice(0, -2)
-  // Plain "s" strip covers both "mainframes" -> "mainframe" (base already ends in "e")
-  // and "clients" -> "client". A dedicated "es" rule would wrongly turn "mainframes"
+  // Plain "s" strip turns "mainframes" into "mainframe" (base already ends in "e")
+  // and "clients" into "client". A dedicated "es" rule would wrongly turn "mainframes"
   // into "mainfram" by stripping two characters from a base that only added one "s".
   if (word.length > 3 && word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1)
   return word
@@ -127,7 +127,7 @@ function extractQueryWords(query) {
   return new Set((query.toLowerCase().match(/[a-z0-9]+/g) || []).map(stem))
 }
 
-// Must be exact (stemmed) word matches, not raw substring checks — otherwise a topic
+// Must be exact (stemmed) word matches, not raw substring checks, otherwise a topic
 // word like "out" spuriously matches inside an unrelated query word like "about".
 function keywordBoost(queryWords, topic) {
   let boost = 0

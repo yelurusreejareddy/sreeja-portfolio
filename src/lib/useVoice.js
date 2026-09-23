@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 const ERROR_MESSAGES = {
   'not-allowed': "Microphone access is blocked. Allow it in your browser's site settings and try again.",
   'service-not-allowed': "Microphone access is blocked. Allow it in your browser's site settings and try again.",
-  'no-speech': "Didn't catch that — try speaking again.",
+  'no-speech': "Didn't catch that. Try speaking again.",
   'audio-capture': 'No microphone found.',
   network: 'Network error while listening. Try again.',
   aborted: null,
