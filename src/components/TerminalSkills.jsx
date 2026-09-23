@@ -6,7 +6,7 @@ import { useRef } from 'react'
 // Grouped by area so a long list stays readable, and so a recruiter scanning
 // for one kind of skill (say, cloud) can find the line for it.
 const GROUPS = [
-  ['languages', ['python', 'javascript', 'java', 'sql', 'bash']],
+  ['languages', ['python', 'javascript', 'java', 'sql']],
   ['ml / deep learning', ['pytorch', 'tensorflow', 'keras', 'scikit-learn', 'neural-networks', 'cnns', 'lstms', 'model-training', 'hyperparameter-tuning', 'cross-validation']],
   ['llm / generative ai', ['llms', 'rag', 'langchain', 'langgraph', 'agents', 'multi-agent', 'prompt-engineering', 'fine-tuning', 'embeddings', 'vector-databases', 'chroma', 'hugging-face', 'openai-api']],
   ['nlp', ['nlp', 'transformers', 'tokenization', 'tf-idf', 'word-embeddings', 'summarization']],
