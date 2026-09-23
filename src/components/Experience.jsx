@@ -143,8 +143,9 @@ export default function Experience() {
             Engineering Technology (IJRASET), Aug 2021
           </p>
           <p className="text-sm text-neutral-400 mt-2 dark:text-neutral-500">
-            My first published work, from before graduate school. Random
-            Forest and linear regression applied to housing data.
+            My first published work, from before graduate school. Linear
+            and logistic regression compared for predicting house prices
+            around Bangalore.
           </p>
         </motion.div>
       </div>
