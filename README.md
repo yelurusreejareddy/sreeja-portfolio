@@ -1,4 +1,4 @@
-# Sreeja Reddy Yeluru — Portfolio
+# Sreeja Reddy Yeluru - Portfolio
 
 Personal portfolio site built with React, Vite, Tailwind CSS, and Framer Motion.
 
