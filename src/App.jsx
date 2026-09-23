@@ -16,7 +16,7 @@ import ChatDrawer from './components/ChatDrawer'
 import ChatTrigger from './components/ChatTrigger'
 import Contact from './components/Contact'
 import ThemeToggle from './components/ThemeToggle'
-import { projects } from './data/projects'
+import { featuredProduct, projects } from './data/projects'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -30,7 +30,7 @@ const fadeUp = {
 const NAV_LINKS = [
   { href: '#about', label: 'About' },
   { href: '#research', label: 'Research' },
-  { href: '#projects', label: 'Projects' },
+  { href: '#featured', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#contact', label: 'Contact' },
 ]
@@ -50,7 +50,7 @@ function Navbar({ onOpenChat }) {
         <div className="hidden md:flex items-center gap-5 text-sm text-neutral-600 dark:text-neutral-300">
           <a href="#about" className="hover:text-neutral-900 transition-colors dark:hover:text-white">About</a>
           <a href="#research" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Research</a>
-          <a href="#projects" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
+          <a href="#featured" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Projects</a>
           <a href="#experience" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Experience</a>
           <button onClick={onOpenChat} className="hover:text-neutral-900 transition-colors dark:hover:text-white">Chat</button>
           <a href="#contact" className="hover:text-neutral-900 transition-colors dark:hover:text-white">Contact</a>
@@ -147,7 +147,7 @@ function Hero({ onOpenChat }) {
             className="inline-flex items-center gap-2.5 glass rounded-full px-4 py-2 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-neutral-600 dark:text-neutral-300">Open to AI/ML Engineer &amp; Data Scientist roles</span>
+            <span className="text-sm text-neutral-600 dark:text-neutral-300">Open to AI roles</span>
           </motion.div>
 
           <motion.h1
@@ -186,8 +186,9 @@ function Hero({ onOpenChat }) {
             custom={0.2}
             className="text-lg text-neutral-600 max-w-xl mx-auto lg:mx-0 mb-10 dark:text-neutral-300"
           >
-            Currently doing research in computational topology at DePaul
-            University, and turning what I learn into projects you can try.
+            Currently a Research Assistant at DePaul working on computational
+            topology, and turning what I learn into live products and projects
+            you can try.
           </motion.p>
 
           <motion.div
@@ -199,7 +200,7 @@ function Hero({ onOpenChat }) {
           >
             <Magnetic>
               <a
-                href="#projects"
+                href="#featured"
                 className="inline-block px-7 py-3 rounded-full bg-neutral-900 text-white font-medium hover:bg-neutral-800 transition-colors dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-100"
               >
                 View my work
@@ -209,6 +210,7 @@ function Hero({ onOpenChat }) {
               <a
                 href="#contact"
                 className="inline-block px-7 py-3 rounded-full glass font-medium text-neutral-800 hover:border-black/20 transition-colors dark:text-neutral-100 dark:hover:border-white/20"
+                style={{ borderRadius: 9999 }}
               >
                 Get in touch
               </a>
@@ -341,12 +343,105 @@ function FeaturedProject({ project, index }) {
   )
 }
 
+// WanderWear gets its own section above the projects because it is a live
+// product rather than a coursework demo. A screenshot gives a quick look at
+// the real app, and the two buttons go to the app itself and to the public
+// overview on GitHub.
+function FeaturedProduct() {
+  const p = featuredProduct
+
+  return (
+    <section id="featured" className="relative px-6 pb-6 scroll-mt-28">
+      <div className="max-w-5xl mx-auto">
+        <motion.p
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="hud-label mb-6 text-center"
+        >
+          Featured product
+        </motion.p>
+
+        <motion.div
+          initial={PAGE_VISIBLE ? { opacity: 0, y: 24 } : false}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5 }}
+          className="glass overflow-hidden grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] relative"
+        >
+          <a
+            href={p.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center p-3 sm:p-4 bg-black/[0.02] border-b border-black/8 lg:border-b-0 lg:border-r dark:bg-white/[0.02] dark:border-white/10"
+            aria-label={`Open ${p.title}`}
+          >
+            {/* The whole screenshot, framed, rather than cropped to fill the
+                column: cropping cut the sign-in form off mid-word. */}
+            <img
+              src={p.image}
+              alt={`${p.title} sign-in screen`}
+              loading="lazy"
+              className="w-full h-auto rounded-xl border border-black/8 shadow-lg dark:border-white/10"
+            />
+          </a>
+
+          <div className="p-8 sm:p-10 relative">
+            <div className="blob w-[260px] h-[260px] top-[-40%] right-[-20%] opacity-20" style={{ background: 'var(--terracotta)' }} />
+            <div className="relative z-10">
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h3 className="font-display text-3xl font-medium">{p.title}</h3>
+                <span className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 dark:text-emerald-300 dark:bg-emerald-400/10 dark:border-emerald-400/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  Live
+                </span>
+              </div>
+              <p className="font-medium text-neutral-800 mb-4 dark:text-neutral-100">{p.tagline}</p>
+              <p className="text-neutral-600 leading-relaxed dark:text-neutral-300">{p.description}</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                {p.tags.map((tag) => (
+                  <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-black/[0.03] text-neutral-500 border border-black/8 dark:bg-white/[0.04] dark:text-neutral-400 dark:border-white/10">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3 mt-7">
+                <a
+                  href={p.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-medium transition-opacity hover:opacity-90"
+                  style={{ background: 'var(--terracotta)' }}
+                >
+                  Try it live <FiExternalLink size={14} />
+                </a>
+                <a
+                  href={p.repoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass font-medium text-neutral-800 hover:border-black/20 transition-colors dark:text-neutral-100 dark:hover:border-white/20"
+                  style={{ borderRadius: 9999 }}
+                >
+                  <FiGithub size={15} /> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 function Projects() {
   const featured = projects.slice(0, 3)
   const rest = projects.slice(3)
 
   return (
-    <section id="projects" className="relative py-28 px-6">
+    // overflow-x-clip: the lead cards slide in from 160px to the right, and
+    // until they do they poked past the edge and let the page scroll sideways.
+    <section id="projects" className="relative py-28 px-6 overflow-x-clip">
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
@@ -415,6 +510,7 @@ export default function App() {
       <Marquee />
       <About />
       <Research />
+      <FeaturedProduct />
       <Projects />
       <Experience />
       <TerminalSkills />

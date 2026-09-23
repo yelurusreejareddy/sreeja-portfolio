@@ -1,6 +1,19 @@
 // `live` marks projects with a running Hugging Face demo. The free tier only
 // keeps a few Spaces awake at once, so the rest link to their code on GitHub
 // rather than a paused Space page.
+// WanderWear is a live product rather than a coursework demo, so it has its
+// own featured section above the project grid instead of a card inside it.
+export const featuredProduct = {
+  title: 'WanderWear',
+  tagline: 'An AI travel planner and personal stylist, live on AWS.',
+  description:
+    'A multi-agent system that plans day-by-day trips and assembles outfits from your own wardrobe. Built full-stack and running in production, with per-user data isolation and push-to-deploy CI/CD.',
+  tags: ['AI Agents', 'Full-Stack', 'AWS', 'FastAPI', 'Next.js'],
+  liveUrl: 'https://main.d1xhj0as3larx1.amplifyapp.com',
+  repoUrl: 'https://github.com/yelurusreejareddy/wanderwear',
+  image: '/wanderwear.jpg',
+}
+
 export const projects = [
   {
     title: 'AI Policy RAG',

@@ -16,6 +16,9 @@ export default function ChatDrawer({ open, onClose }) {
   const [modelLoading, setModelLoading] = useState(false)
   const [usedSuggestions, setUsedSuggestions] = useState([])
   const scrollRef = useRef(null)
+  // What the last question was matched on, so a follow-up like
+  // "tell me more about it" knows what "it" is.
+  const lastQueryRef = useRef(null)
   const { listening, toggleListening, speechSupported, voiceError } = useVoice({
     onResult: (transcript) => handleSend(transcript),
   })
@@ -25,6 +28,7 @@ export default function ChatDrawer({ open, onClose }) {
       setMessages([WELCOME_MESSAGE])
       setInput('')
       setUsedSuggestions([])
+      lastQueryRef.current = null
     }
   }, [open])
 
@@ -38,8 +42,10 @@ export default function ChatDrawer({ open, onClose }) {
     if (!isEmbedderLoaded()) setModelLoading(true)
 
     try {
-      const answerText = await answerQuestion(q)
-      setMessages((m) => [...m, { role: 'assistant', text: answerText }])
+      const shownAnswers = messages.filter((m) => m.role === 'assistant').map((m) => m.text)
+      const { text, query } = await answerQuestion(q, { previousQuery: lastQueryRef.current, shownAnswers })
+      lastQueryRef.current = query
+      setMessages((m) => [...m, { role: 'assistant', text }])
     } catch (err) {
       setMessages((m) => [
         ...m,

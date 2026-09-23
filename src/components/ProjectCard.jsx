@@ -32,7 +32,16 @@ export default function ProjectCard({ project, index }) {
     >
       <div className="flex items-start justify-between gap-3">
         <span className="text-2xl">{project.emoji}</span>
-        <FiExternalLink className="text-neutral-400 group-hover:text-neutral-600 transition-colors shrink-0 mt-1 dark:text-neutral-500 dark:group-hover:text-neutral-300" size={16} />
+        {project.live ? (
+          <span className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-1 shrink-0 dark:text-emerald-300 dark:bg-emerald-400/10 dark:border-emerald-400/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            Live demo
+          </span>
+        ) : (
+          <span className="flex items-center gap-1.5 text-xs text-neutral-500 bg-black/[0.03] border border-black/8 rounded-full px-2.5 py-1 shrink-0 dark:text-neutral-400 dark:bg-white/[0.04] dark:border-white/10">
+            Code <FiExternalLink size={11} />
+          </span>
+        )}
       </div>
       <h3 className="font-display text-lg font-medium text-neutral-900 dark:text-neutral-50">{project.title}</h3>
       <p className="text-sm text-neutral-600 leading-relaxed dark:text-neutral-300">{project.description}</p>

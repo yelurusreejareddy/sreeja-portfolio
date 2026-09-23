@@ -137,9 +137,10 @@ function keywordBoost(queryWords, topic) {
   return boost
 }
 
-export function findAnswer(question, queryEmbedding) {
+export function findAnswer(question, queryEmbedding, exclude = new Set()) {
   const queryWords = extractQueryWords(question)
   const scored = knowledgeData
+    .filter((chunk) => !exclude.has(chunk.short))
     .map((chunk) => ({
       score: cosineSim(queryEmbedding, chunk.embedding) + keywordBoost(queryWords, chunk.topic),
       text: chunk.short,
@@ -151,15 +152,44 @@ export function findAnswer(question, queryEmbedding) {
   return scored[0].text
 }
 
-export async function answerQuestion(question) {
-  const smallTalkReply = matchSmallTalk(question)
-  if (smallTalkReply) return smallTalkReply
+// Each question is matched on its own, so "explain more about it" used to
+// reach the fallback: "it" means nothing without the question before it. A
+// short question that points back at something, or asks for more, is matched
+// together with the previous question instead. "She" and "her" are left out
+// on purpose, since in this chat they always mean Sreeja, not the last topic.
+const POINTS_BACK = /\b(it|its|that|this|those|them|they|there)\b/i
+const ASKS_FOR_MORE = /\b(more|else|elaborate|expand|further|details?|continue|go on)\b/i
+const FOLLOW_UP_MAX_WORDS = 8
 
-  const overrideReply = matchTopicOverride(question)
-  if (overrideReply) return overrideReply
+export function isFollowUp(question) {
+  const words = question.trim().split(/\s+/).length
+  return words <= FOLLOW_UP_MAX_WORDS && (POINTS_BACK.test(question) || ASKS_FOR_MORE.test(question))
+}
+
+// The query actually matched for this turn. Kept short so a run of follow-ups
+// doesn't grow it without limit.
+export function resolveQuery(question, previousQuery) {
+  if (!previousQuery || !isFollowUp(question)) return question
+  return `${previousQuery} ${question}`.slice(-240)
+}
+
+// Returns the answer plus the query it was matched on, which the chat passes
+// back in as previousQuery on the next turn. shownAnswers are skipped only
+// when the visitor explicitly asks for more, so "tell me more" brings
+// something new instead of repeating the paragraph they just read.
+export async function answerQuestion(question, { previousQuery = null, shownAnswers = [] } = {}) {
+  const smallTalkReply = matchSmallTalk(question)
+  if (smallTalkReply) return { text: smallTalkReply, query: previousQuery }
+
+  const query = resolveQuery(question, previousQuery)
+
+  const overrideReply = matchTopicOverride(query)
+  if (overrideReply) return { text: overrideReply, query }
+
+  const exclude = query !== question && ASKS_FOR_MORE.test(question) ? new Set(shownAnswers) : new Set()
 
   const embedder = await getEmbedder()
-  const output = await embedder(question, { pooling: 'mean', normalize: true })
+  const output = await embedder(query, { pooling: 'mean', normalize: true })
   const queryEmbedding = Array.from(output.data)
-  return findAnswer(question, queryEmbedding)
+  return { text: findAnswer(query, queryEmbedding, exclude), query }
 }

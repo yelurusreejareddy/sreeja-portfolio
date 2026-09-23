@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 const roles = [
   {
-    title: 'Graduate Research Assistant',
+    title: 'Research Assistant',
     org: 'DePaul University',
     period: 'Sep 2025 to Present',
     location: 'Chicago, IL',

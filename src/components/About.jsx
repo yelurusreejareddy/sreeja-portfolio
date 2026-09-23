@@ -11,7 +11,9 @@ const achievements = [
 
 export default function About() {
   return (
-    <section id="about" className="relative py-28 px-6">
+    // overflow-x-clip: the highlight cards slide in from 32px to the right,
+    // which on a phone let the page scroll sideways until they arrived.
+    <section id="about" className="relative py-28 px-6 overflow-x-clip">
       <div className="max-w-5xl mx-auto">
         <motion.p
           initial={PAGE_VISIBLE ? { opacity: 0, y: 16 } : false}
@@ -48,11 +50,13 @@ export default function About() {
                 Scholarship.
               </p>
               <p>
-                During the program I became a Graduate Research Assistant in
-                computational topology, which I still do today. I also like my
-                work to be something people can actually use, so I put my
-                course projects online as small interactive demos instead of
-                leaving them in notebooks.
+                During the program I started research in computational
+                topology, which I still do today as a Research Assistant. I
+                also like my work to be something people can actually use,
+                like WanderWear, a live app I built where you can plan a trip
+                and get outfits styled from your own wardrobe. My other
+                projects are online as small interactive demos instead of
+                sitting in notebooks.
               </p>
               <p>
                 Now I'm looking for my next role as an AI/ML Engineer or

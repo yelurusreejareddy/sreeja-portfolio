@@ -34,7 +34,7 @@ export default function Research() {
               </h2>
             </div>
             <p className="text-neutral-500 text-sm mb-6 dark:text-neutral-400">
-              Graduate Research Assistant, DePaul University | Sep 2025 to present
+              Research Assistant, DePaul University | Sep 2025 to present
             </p>
 
             <div className="space-y-4 text-neutral-600 leading-relaxed max-w-3xl dark:text-neutral-300">
