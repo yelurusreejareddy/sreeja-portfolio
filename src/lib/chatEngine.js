@@ -137,8 +137,12 @@ function keywordBoost(queryWords, topic) {
   return boost
 }
 
-export function findAnswer(question, queryEmbedding, exclude = new Set()) {
-  const queryWords = extractQueryWords(question)
+// keywordText defaults to the question itself. For a follow-up, the embedding
+// carries the earlier question as context, but keywords come from the new
+// question alone, or a strong word from before ("try") drags every later
+// answer back to the same place.
+export function findAnswer(question, queryEmbedding, exclude = new Set(), keywordText = question) {
+  const queryWords = extractQueryWords(keywordText)
   const scored = knowledgeData
     .filter((chunk) => !exclude.has(chunk.short))
     .map((chunk) => ({
@@ -183,7 +187,7 @@ export async function answerQuestion(question, { previousQuery = null, shownAnsw
 
   const query = resolveQuery(question, previousQuery)
 
-  const overrideReply = matchTopicOverride(query)
+  const overrideReply = matchTopicOverride(question)
   if (overrideReply) return { text: overrideReply, query }
 
   const exclude = query !== question && ASKS_FOR_MORE.test(question) ? new Set(shownAnswers) : new Set()
@@ -191,5 +195,5 @@ export async function answerQuestion(question, { previousQuery = null, shownAnsw
   const embedder = await getEmbedder()
   const output = await embedder(query, { pooling: 'mean', normalize: true })
   const queryEmbedding = Array.from(output.data)
-  return { text: findAnswer(query, queryEmbedding, exclude), query }
+  return { text: findAnswer(query, queryEmbedding, exclude, question), query }
 }
