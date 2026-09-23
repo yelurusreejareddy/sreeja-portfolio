@@ -23,7 +23,7 @@ const SMALL_TALK = [
   },
   {
     pattern: /^\s*how(?:'s| is| are)?\s*(you|it going|things)\s*[!.?,]*\s*$/i,
-    reply: "I'm doing well, thanks for asking! I'm here to answer questions about Sreeja — what would you like to know?",
+    reply: "I'm doing well, thanks for asking! I'm here to answer questions about Sreeja. What would you like to know?",
   },
   {
     pattern: /^\s*(thanks|thank you|thx|appreciate it)\s*[!.,]*\s*$/i,

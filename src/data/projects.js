@@ -37,7 +37,7 @@ export const projects = [
     title: 'Atari Pong DQN',
     emoji: '🏓',
     description:
-      'A Deep Q-Network trained from raw pixels to play Pong, watchable frame by frame against a greedy policy.',
+      'A Deep Q-Network that plays Pong from raw pixels, watchable frame by frame against a greedy policy.',
     tags: ['Deep RL', 'PyTorch'],
     url: 'https://huggingface.co/spaces/Sreeja-reddy/pong-dqn',
     live: true,

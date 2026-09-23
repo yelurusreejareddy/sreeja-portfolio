@@ -12,7 +12,7 @@ const GROUPS = [
   ['nlp', ['nlp', 'transformers', 'tokenization', 'tf-idf', 'word-embeddings', 'summarization']],
   ['reinforcement learning', ['reinforcement-learning', 'q-learning', 'dqn', 'ppo', 'a2c', 'rlhf', 'stable-baselines3', 'gymnasium']],
   ['computer vision', ['computer-vision', 'opencv', 'image-classification', 'pywavelets']],
-  ['data / analytics', ['numpy', 'pandas', 'matplotlib', 'eda', 'feature-engineering', 'pca', 'smote', 'shap']],
+  ['data / analytics', ['numpy', 'pandas', 'matplotlib', 'eda', 'feature-engineering', 'pca', 'smote']],
   ['mlops / deployment', ['docker', 'ci/cd', 'github-actions', 'rest-apis', 'fastapi', 'model-deployment']],
   ['cloud (aws)', ['ecs-fargate', 'ecr', 'amplify', 'api-gateway', 'iam', 'secrets-manager', 'cloudwatch']],
   ['web / demos / full-stack', ['next.js', 'react', 'gradio', 'pwa', 'html/css']],
