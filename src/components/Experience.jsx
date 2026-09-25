@@ -18,8 +18,10 @@ const roles = [
     period: 'Oct 2021 to Aug 2024',
     location: 'Bangalore, India',
     points: [
-      'Built and maintained backend batch systems and optimized SQL, improving API response times by 60%.',
-      'Reduced recurring support tickets by 20% through root-cause fixes and process improvements.',
+      'Supported the core trading application of a global oil trading client, working with many upstream and downstream teams.',
+      'Diagnosed a client-reported logic issue by tracing its SQL queries, and the fix was deployed that weekend.',
+      'Reduced recurring support tickets by 20% with a self-service fix for the most frequent issues.',
+      'Handled database monitoring, DB2 upgrades, P&L reconciliation, monthly releases, and front-line outage response.',
     ],
   },
   {
@@ -28,7 +30,7 @@ const roles = [
     period: 'Nov 2020 to Jan 2021',
     location: 'Remote',
     points: [
-      'Built responsive websites for an ed-tech platform, reducing bounce rate by 30%.',
+      'Built responsive, cross-device pages for an ed-tech platform using HTML, CSS, and JavaScript.',
     ],
   },
   {
