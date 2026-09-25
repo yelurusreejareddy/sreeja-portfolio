@@ -18,7 +18,7 @@ const roles = [
     period: 'Oct 2021 to Aug 2024',
     location: 'Bangalore, India',
     points: [
-      'Supported the core trading application of a global oil trading client, working with many upstream and downstream teams.',
+      'Supported the core trading application of a global oil trading client, working closely with the clients and many upstream and downstream teams.',
       'Resolved critical application issues by tracing root causes in the code and SQL, then writing and deploying the fixes to production.',
       'Reduced recurring support tickets by 20% with a self-service fix for the most frequent issues.',
       'Handled database monitoring, DB2 upgrades, P&L reconciliation, monthly releases, and front-line outage response.',
