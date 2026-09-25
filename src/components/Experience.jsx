@@ -13,7 +13,7 @@ const roles = [
     ],
   },
   {
-    title: 'Application Development Associate to Analyst',
+    title: 'Application Development Analyst',
     org: 'Accenture',
     period: 'Oct 2021 to Aug 2024',
     location: 'Bangalore, India',
