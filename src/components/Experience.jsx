@@ -19,7 +19,7 @@ const roles = [
     location: 'Bangalore, India',
     points: [
       'Supported the core trading application of a global oil trading client, working with many upstream and downstream teams.',
-      'Diagnosed a client-reported logic issue by tracing its SQL queries, and the fix was deployed that weekend.',
+      'Resolved major client-escalated defects by tracing root causes in the code and SQL, then writing and deploying the fixes to production.',
       'Reduced recurring support tickets by 20% with a self-service fix for the most frequent issues.',
       'Handled database monitoring, DB2 upgrades, P&L reconciliation, monthly releases, and front-line outage response.',
     ],
